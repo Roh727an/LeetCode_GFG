@@ -5,6 +5,12 @@ public:
         int low=0;
         int high=nums.size()-1;
         int mid=(low+high)/2;
+        /*
+               >   >      
+        1 2 3 4 |8| 2 4 5
+        Normally-> arr[mid]<arr[mid+1]
+        But for Peak index-> arr[mid]>arr[mid+1]=> mid can be our Peak Index
+        */
         while(low<high)
         {
 
