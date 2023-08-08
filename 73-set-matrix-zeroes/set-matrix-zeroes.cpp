@@ -40,7 +40,7 @@ public:
         }
     }
     */
-
+    /*
     // Approch 2: Stack/Queue Approch
     int n=mattrix.size();
     int m=mattrix[0].size();
@@ -72,5 +72,35 @@ public:
             for(int k=0;k<n;k++)
             mattrix[k][col]=0;
         }
+        */
+    // Approch 3: Row& Column Approch
+    int n=mattrix.size();
+    int m=mattrix[0].size();
+    // 1.Create Row & Column Array
+    vector<int>row(n,0);
+    vector<int>col(m,0);
+    // 2.Traverse the Matrix & mark the Row & Column's of Zero inthe Row,Col Array
+    for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(mattrix[i][j]==0)
+                {
+                    // Mark i'th row & j'th column as 1
+                    row[i]=1;
+                    col[j]=1;
+                }
+            }
+        }
+        // 3.Re-traverse the Matrix & Mark all elements in the Row,Column Marked as 0
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(row[i]||col[j])
+                mattrix[i][j]=0;
+            }
+        }
+
     }
 };
