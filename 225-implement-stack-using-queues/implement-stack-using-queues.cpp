@@ -39,12 +39,15 @@ public:
         q.pop();
         return ele;
         */
+        
         int n=q.size()-1;
+        // Push Element from Front to Rear till size-1 times
         while(n--)
         {
             q.push(q.front());
             q.pop();
         }
+        // Now Queue front is pointing at Last in Element so Pop it
         int del=q.front();
         q.pop();
         return del;
@@ -57,13 +60,16 @@ public:
         return q.front();
         */
         int n=q.size();
-         int ele=-1;
+        int ele=-1;
+        // Push Element from Front to Rear till size times
         while(n--)
         {
             q.push(q.front());
+            // Store the Value of Front of Queue
             ele=q.front();
             q.pop();
         }
+        // The Last ELement was Visited / Stored in ele is Rear of Queue/ Last in Element / Stack Top
         return ele;
     }
     
