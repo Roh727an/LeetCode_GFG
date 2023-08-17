@@ -1,12 +1,18 @@
 class MyStack {
 public:
+    /*
+    // Using 2 Queues 
     queue<int>q;
     queue<int>q_ref;
+    */
+    queue<int>q;
     MyStack() {
 
     }
     
     void push(int x) {
+        /*
+        // Using 2 Queues 
         // 1.Put Elements From Main Queue(MyStack) to Reference Queue
         while(!q.empty())
         {
@@ -21,23 +27,52 @@ public:
             q.push(q_ref.front());
             q_ref.pop();
         }
+        */
+        q.push(x);
     }
     
     int pop() {
+        /*
+        // Using 2 Queues 
         // Simply pop from Main Queue
         int ele=top();
         q.pop();
         return ele;
-        
+        */
+        int n=q.size()-1;
+        while(n--)
+        {
+            q.push(q.front());
+            q.pop();
+        }
+        int del=q.front();
+        q.pop();
+        return del;
     }
     
     int top() {
+        /*
+        // Using 2 Queues 
         // Simply Return Main Queue front
         return q.front();
+        */
+        int n=q.size();
+         int ele=-1;
+        while(n--)
+        {
+            q.push(q.front());
+            ele=q.front();
+            q.pop();
+        }
+        return ele;
     }
     
     bool empty() {
+        /*
+        // Using 2 Queues 
         return q.empty();
+        */
+         return q.empty();
     }
 };
 
