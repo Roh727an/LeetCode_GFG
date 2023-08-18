@@ -1,42 +1,51 @@
-    class MinStack {
+class MinStack {
 public:
-    stack<int>st;
-    stack<int>ref_st;
+    stack<long long>st;
+    long long mini=INT_MAX;;
     MinStack() {
         
     }
     
     void push(int val) {
-        st.push(val);
+        // 1.If val is less than Mini then we Push Modified Value into Stack
+        if(val  <mini){
+            long long mod_val= (long long)2*val  - mini;
+            mini=val;
+            st.push(mod_val);
+        }
+        // Else we do a Simple Push
+        else
+        {
+            st.push(val);
+        }
     }
     
     void pop() {
+        // If the Popped Value is Modified Value then we have to Update Mini
+        if(st.top() < mini)
+        {
+            mini=2*mini-st.top();
+            st.pop();
+        }
+        // Else we Simply Pop from Stack
+        else
         st.pop();
     }
     
     int top() {
-        return st.top();
+        // If Stack top Contains Modified Value then we Retrun Mini
+        if(st.top() < mini)
+        {
+            return (int)mini;
+        }
+        // Else we Return Stack Top
+        else
+        return (int)st.top();
     }
     
     int getMin() {
-        // 1.Put all Elements from Stack 1 to Reference Stack
-        int minEle=INT_MAX;
-        while(!st.empty())
-        {
-            ref_st.push(st.top());
-            if(minEle > st.top())
-            {
-                minEle=st.top();
-            }
-            st.pop();
-        }
-        // 2.Put Back all Elements from Reference Stack to Main Stack.
-        while(!ref_st.empty())
-        {
-            st.push(ref_st.top());
-            ref_st.pop();
-        }
-        return minEle;
+        // We Simply Return our Mini which contains minimum Value present in the Stack
+        return (int)mini;
     }
 };
 
