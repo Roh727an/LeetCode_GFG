@@ -29,7 +29,7 @@ public:
         return ans;
 
         /*
-        // Optimised Approch
+        // Optimised Approch T.C=O(N) & S.C=O(1)
         vector<int>ans;
         int max=-1;
         for(int i=arr.size()-1;i>=0;i--)
