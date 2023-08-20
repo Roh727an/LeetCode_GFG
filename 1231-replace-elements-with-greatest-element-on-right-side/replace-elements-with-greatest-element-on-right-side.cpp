@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> replaceElements(vector<int>& arr) {
-        // Stack Approch
+        // Stack Approch -> T.C = O(2N) & S.C= O(N)
         if(arr.size() <= 1)
         return {-1};
         vector<int>ans;
