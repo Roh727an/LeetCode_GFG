@@ -10,23 +10,26 @@ using namespace std;
 
 class Solution{
 public:
-    stack<int> insertAtBottom(stack<int> st,int X){
-        stack<int>ref;
-        // 1.Put all Elements from st to ref
-        while(!st.empty())
+    void InsertAtBottomStack(stack<int> &st,int ele)
+    {
+        // IF Stack is Empty then Simply Push ele 
+        if(st.empty())
         {
-            ref.push(st.top());
-            st.pop();
+            st.push(ele);
+            return ;
         }
-        // 2.Push the Element in st
-        st.push(X);
-         // 3.Put Back all Elements from ref to st
-        while(!ref.empty())
-        {
-            st.push(ref.top());
-            ref.pop();
-        }
-        return st;
+        // IF the Stack is Not Empty then Recursively Go to Last Element
+        // 1.Store Top of Stack in Recursion Call Stack
+        int topEle=st.top();
+        st.pop();
+        // Recursion Call
+        InsertAtBottomStack(st,ele);
+        // After Inserting at Bottom insert the Current top into Stack
+        st.push(topEle);
+    }
+    stack<int> insertAtBottom(stack<int> St,int X){
+        InsertAtBottomStack(St,X);
+        return St;
     }
 };
 
