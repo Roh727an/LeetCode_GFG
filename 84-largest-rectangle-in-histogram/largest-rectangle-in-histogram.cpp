@@ -20,7 +20,6 @@ public:
                 NSE[i]=n-1;
             } 
             // c.Else  Insert Stack Top - 1 as Next Greater
-
             else
             {
                 NSE[i]=st.top()-1;
@@ -50,7 +49,6 @@ public:
                 PSE[i]=0;
             } 
             // c.Else  Insert Stack Top + 1 as Previous Greater
-
             else
             {
                 PSE[i]=st.top()+1;
@@ -61,6 +59,8 @@ public:
         return PSE;
     }
     int largestRectangleArea(vector<int>& heights) {
+        /*
+        // 1.Approch 1 -> T.C: O(3N) & S.C:O(3N)
         // Base Case
         if(heights.size()==1)
         return heights[0];
@@ -77,6 +77,32 @@ public:
         for(int i=0;i<heights.size();i++)
         maxArea=max(maxArea,((NSE[i]-PSE[i]+1)*heights[i]));
 
+        return maxArea;
+        */
+        // Approch 2: Single Pass -> T.C:O(N) & S.C:O(N)
+        int n=heights.size();
+        // 1.Create Stack
+        stack<int>st;
+        int maxArea=0;
+        // 2.Iterate till Last+1 Index
+        for(int i=0;i<=n;i++)
+        {
+            // Elements having Greater in Stack
+            while(!st.empty() && (i==n || heights[st.top()] >= heights[i]))
+            {
+                int heightBlock=heights[st.top()];
+                st.pop();
+                int width;
+                if(st.empty())
+                width=i;
+                else
+                width=i-st.top()-1;
+
+                // Calculate MaxArea
+                maxArea=max(maxArea,width*heightBlock);
+            }
+            st.push(i);
+        }
         return maxArea;
     }
 };
