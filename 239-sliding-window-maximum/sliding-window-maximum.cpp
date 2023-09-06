@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        // 1.Create a Deque(Stor index Not Value)**
+        // 1.Create a Deque(Store index Not Value)**
         deque<int>dq;
         vector<int>ans;
         // 2.Traverse Array & Check-
