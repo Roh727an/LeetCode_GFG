@@ -1,9 +1,9 @@
 class StockSpanner {
 public:
-    stack<pair<int,int>>st;
     StockSpanner() {
     }
     
+    stack<pair<int,int>>st;
     int next(int price) {
                 // a.Add all days till Stack top Price is Smaller than Current Price
                 int days=1;
