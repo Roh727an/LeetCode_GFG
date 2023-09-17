@@ -21,6 +21,7 @@ public:
         return cnt;
     }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        /*
          // Base Case
            if(head==NULL) 
            return head;
@@ -53,5 +54,29 @@ public:
            prev->next=curr->next;
            curr->next=NULL;
            return head;
+           */
+             //  Optimised Approch
+
+          // 1.Create a Dummy Node & Attach Before Head
+          ListNode* dummy=new ListNode(-1);
+          dummy->next=head;
+          // 2.Create a Fast & Slow Pointer pointing at Dummy Node
+          ListNode* fast=dummy;
+          ListNode* slow=dummy;
+
+          // 3.Move the Fast Pointer till N times
+          for(int i=0;i<n;i++)
+          fast=fast->next;
+
+          // 4.Iterate fast & Slow Pointer by One Step till Fast comes at Last Node
+          while(fast->next!=NULL)
+          {
+            fast=fast->next;
+            slow=slow->next;
+          }
+          // 5.Now Slow is Pointing at before Nth Node from Last,so Cut the Connection 
+          slow->next=slow->next->next;
+          // Now Dummy's Next is Our Head of Final Linked List
+          return dummy->next;
     }
 };
