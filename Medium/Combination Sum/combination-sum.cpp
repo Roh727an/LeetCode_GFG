@@ -12,32 +12,41 @@ class Solution {
   public:
     //Function to return a list of indexes denoting the required 
     //combinations whose sum is equal to given number.
-void rec(int idx,vector<int>arr,vector<vector<int>>&ans,vector<int>ds,int k)
-{
-    if(idx>=arr.size())
+        void rec(int idx,vector<int>arr,vector<int>ds,vector<vector<int>>&ans,int sum)
     {
-        if(k==0)
-        ans.push_back(ds);
-        return;
+        // Base Case
+        if(idx>=arr.size())
+        {
+            if(sum==0)
+            ans.push_back(ds);
+            return ;
+        }
+        // We Pick the Current index if it is Less than Sum 
+        if(arr[idx]<=sum)
+        {
+            ds.push_back(arr[idx]);
+            // Recursive Call For that Index
+            rec(idx,arr,ds,ans,sum-arr[idx]);
+            // When Come Back from Recursive Call Make Sure to Pop the Last AddedElement
+            ds.pop_back(); 
+        }
+        // Recursive Call For Next Index
+        rec(idx+1,arr,ds,ans,sum);
     }
-    if(arr[idx]<=k){
-        ds.push_back(arr[idx]);
-        rec(idx,arr,ans,ds,k-arr[idx]);
-        ds.pop_back();
-    }
-    rec(idx+1,arr,ans,ds,k);
-}
     vector<vector<int> > combinationSum(vector<int> &A, int B) {
         // Your code here
-        vector<vector<int>>ans;
-        vector<int>ds;
+        // Remove All Duplicates Using Set
         set<int>st(A.begin(),A.end());
+        // Put the Set Value into a temp Array
         vector<int>arr(st.begin(),st.end());
+        // Sort the Array
         sort(arr.begin(),arr.end());
-        rec(0,arr,ans,ds,B);
-        // sort(ans.begin(),ans.end());
+        // Call Recursion
+        vector<int>ds;
+        vector<vector<int>>ans;
+        rec(0,arr,ds,ans,B);
         return ans;
-        
+
     }
 };
 
