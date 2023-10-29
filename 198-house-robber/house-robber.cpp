@@ -36,5 +36,23 @@ int memo(int idx,vector<int>& nums,vector<int>& dp)
         dp[i]=max(pick,nonPick);
     }
     return dp[n-1];
+
+    // SPACE OPTIMIZATION
+    int prev=nums[0];
+    int prev2=0;
+    for(int i=1;i<n;i++)
+    {
+        int pick=nums[i];
+        // Edge Case
+        if(i>1)
+        pick+=prev2;
+
+        int nonPick=0+prev;
+
+        int curr=max(pick,nonPick);
+        prev2=prev;
+        prev=curr;
+    }
+    return prev;
     }
 };
