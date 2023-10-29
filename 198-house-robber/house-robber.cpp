@@ -17,6 +17,7 @@ int memo(int idx,vector<int>& nums,vector<int>& dp)
     return dp[idx]=max(pick,notPick);
 }
     int rob(vector<int>& nums) {
+    /*
         // MEMOIZATION
     int n=nums.size();
     vector<int>dp(n+1,-1);
@@ -36,11 +37,11 @@ int memo(int idx,vector<int>& nums,vector<int>& dp)
         dp[i]=max(pick,nonPick);
     }
     return dp[n-1];
-
+    */
     // SPACE OPTIMIZATION
     int prev=nums[0];
     int prev2=0;
-    for(int i=1;i<n;i++)
+    for(int i=1;i<nums.size();i++)
     {
         int pick=nums[i];
         // Edge Case
