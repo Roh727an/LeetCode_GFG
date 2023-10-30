@@ -1,6 +1,7 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
+        /*
         // Count Values & Replace Values
         int zero=0;
         int one=0;
@@ -29,5 +30,35 @@ public:
         {
             nums[idx++]=2;
         }
+        */
+        // DNF ALGORITHM
+        int low=0;
+        int mid=0;
+        int high=nums.size()-1;
+
+        while(mid<=high)
+        {
+            // 0 -> LOW
+            if(nums[mid]==0)
+            {
+                swap(nums[mid],nums[low]);
+                mid++;
+                low++;
+            }
+            // 1 -> MID
+            else if(nums[mid]==1)
+            {
+                mid++;
+            }
+            // 2-> HIGH
+            else
+            {
+                swap(nums[mid],nums[high]);
+                high--;
+            }
+        }
+
+
+
     }
 };
