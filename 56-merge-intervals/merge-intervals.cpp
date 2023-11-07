@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    /*
     //    1.Sort the Intervals
     sort(intervals.begin(),intervals.end());
     vector<vector<int>> ans;
@@ -33,6 +34,30 @@ public:
         }
         // Store in Answer List
         ans.push_back({start,end});
+    }
+    return ans;
+    }
+    */
+    // OPTIMISED APPROCH
+    // Base Case
+    if(intervals.size()<=1)
+    return intervals;
+    //    1.Sort the Intervals
+    sort(intervals.begin(),intervals.end());
+    vector<vector<int>> ans;
+    // 2.Iterate over the Interval
+    for(int i=0;i<intervals.size();i++)
+    {
+        // Create New Interval
+        if(ans.empty() || ans.back()[1] < intervals[i][0])
+        {
+            ans.push_back(intervals[i]);
+        }
+        // Merge Intervals
+        else
+        {
+            ans.back()[1]=max(ans.back()[1],intervals[i][1]);
+        }
     }
     return ans;
     }
