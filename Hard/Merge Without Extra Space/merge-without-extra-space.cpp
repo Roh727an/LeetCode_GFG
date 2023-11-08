@@ -6,7 +6,14 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
-        //Function to merge the arrays.
+    //Function to merge the arrays.
+    void SwapGreater(long long nums1[], long long nums2[],int idx1,int idx2)
+    {
+        if(nums1[idx1] > nums2[idx2])
+        {
+        swap(nums1[idx1],nums2[idx2]);
+        }
+    }
     void merge(long long nums1[], long long nums2[], int n, int m) 
     { 
     /*
@@ -30,6 +37,7 @@ class Solution{
     }  
     */
     // APPROCH 3
+    /*
     int left=n-1;//Maximum of Array1 
     int right=0; //Minimum of Array2
     
@@ -46,7 +54,34 @@ class Solution{
     }
     // Sort Both the Array
     sort(nums1,nums1+n);
-     sort(nums2,nums2+m);
+    sort(nums2,nums2+m);
+    */
+    // APPROCH 4 -.> GAP METHOD
+        int len=n+m;
+        int gap=(len/2) + (len%2);
+        
+        while(gap > 0)
+        {
+            int left=0;
+            int right=left + gap;
+            
+            while(right < len){
+                
+                if(left < n && right >=n){
+                    SwapGreater(nums1,nums2,left,right-n);
+                }
+                else if(left >= n ){
+                    SwapGreater(nums2,nums2,left-n,right-n);
+                }
+                else{
+                    SwapGreater(nums1,nums1,left,right);
+                }
+                left++,right++;
+            }
+            if(gap==1) break;
+            
+            gap=(gap/2) + (gap%2);
+        }
     } 
 };
 
