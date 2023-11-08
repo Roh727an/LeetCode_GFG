@@ -33,7 +33,8 @@ public:
     }
     nums1 = ans;    
     */
-    // OPTIMISED APPROCH
+    /*
+    // OPTIMISED APPROCH 1
     // Base Case
     if (m == 0) {
         nums1 = nums2;
@@ -51,9 +52,18 @@ public:
     }    
     for(int j=0;j<n;j++)
     nums1[i+j]=(nums2[j]);
-
-
-
-
+    */
+    // OPTIMISED APPROCH 2
+    //    Base Case
+    if (m == 0) {
+        nums1 = nums2;
+        return;
+    }
+    // Transfer all Elements into array1
+    for(int i=0;i<n;i++)
+    {
+        nums1[i+m]=nums2[i];
+    }
+    sort(nums1.begin(),nums1.end());
     }
 };
