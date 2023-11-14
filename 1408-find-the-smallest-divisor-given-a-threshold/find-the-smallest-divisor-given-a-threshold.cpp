@@ -1,5 +1,6 @@
 class Solution {
 public:
+// Find The Maximum Element from the Array
     int maxElement(vector<int>& nums)
     {
         int maxi=INT_MIN;
@@ -8,6 +9,7 @@ public:
         }
         return maxi;
     }
+// Calculate sum of division
     int calculate(vector<int>& nums, int div){
         int sum=0;
         for(int i=0;i<nums.size();i++){
