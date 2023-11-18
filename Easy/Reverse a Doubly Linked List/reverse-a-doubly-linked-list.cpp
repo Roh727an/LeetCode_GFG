@@ -98,25 +98,38 @@ struct Node
         
 };
 */
-Node* reverseDLL(Node * head)
+class Solution
 {
-    //Your code here
-     //Your code here
+    public:
+    Node* reverseDLL(Node * head)
+    {
+        //Your code here
+          //Your code here
     if(head==NULL || head->next==NULL)
     return head;
-    // Take a Current
+    // 1.Crete a Curr Pointer Pointing at head
     Node* curr=head;
+    // 2.Create a Previous Pointer Pointing at NULL
     Node* previous=NULL;
+    // 3.Iterate till curr is not NULL
     while(curr!=NULL)
     {
+        // a.Take a Forward Pointer pointing at Head's Next
         Node* forward=curr->next;
+        // b.Join Current's Next to Previous
         curr->next=previous;
+        // c.Join Current's prev to Forward
         curr->prev=forward;
+        // d.Update Previous as Curr
         previous=curr;
+        // e.Update Curr as forward
         curr=forward;
     }
+    // 4.Return Previous
     return previous;
-}
+    }
+};
+
 
 
 //{ Driver Code Starts.
@@ -142,7 +155,8 @@ int main() {
 	        temp->prev= tail;
 	        tail = temp;
 	    }
-	    head=reverseDLL(head);
+	    Solution ob;
+	    head=ob.reverseDLL(head);
 	    
 	    
 	    if(verify(head))
