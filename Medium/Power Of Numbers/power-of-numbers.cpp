@@ -8,7 +8,7 @@ class Solution{
     public:
     //You need to complete this fucntion
     
-   long long rec(int n,int r,long long &ans)
+    long long rec(int n,int r,long long &ans)
     {
         // Base Case
        if(r<=0)
