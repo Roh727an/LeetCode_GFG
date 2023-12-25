@@ -9,11 +9,11 @@ class Solution{
 public:	
 	int search(int A[], int N){
 	    //code
-	    int singleElement=0;
-       for(int i=0;i<N;i++)
-       singleElement=singleElement^A[i];
-
-       return singleElement;
+	    int ans=0;
+        for(int i=0;i<N;i++){
+            ans^=A[i];
+        }
+        return ans;
 	}
 };
 
