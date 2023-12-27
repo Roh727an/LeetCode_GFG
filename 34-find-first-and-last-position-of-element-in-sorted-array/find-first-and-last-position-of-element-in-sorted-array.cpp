@@ -1,69 +1,41 @@
 class Solution {
 public:
-int FirstOccurance(vector<int>& arr, int target)
-{
-    int low=0,high=arr.size()-1,mid=(low+high)/2;
-    int ans=-1;
-    while(low<=high)
-    {
-        // Equal
-        if(arr[mid]==target)
-        {
-            ans=mid;
-            high=mid;
-        }
-        // Lesser
-        if(arr[mid]<target)
-        {
-            low=mid+1;
-        }
-        // Greater
-        else
-        high=mid-1;
-        
-        mid=(low+high)/2;
-    }
-    return ans;
-}
-int LastOccurance(vector<int>& arr, int target)
-{
-    int low=0,high=arr.size()-1,mid=(low+high)/2;
-    int ans=-1;
-    while(low<=high)
-    {
-        // Equal
-        if(arr[mid]==target)
-        {
-        ans=mid;
-        low=mid+1;
-        }
-        // Less
-        else if(arr[mid]>target)
-        {
-            high=mid-1;
-        }
-        // Greater
-        else
-        low=mid+1;
-
-        mid=(low+high)/2;
-    }
-    return ans;
-}
-    vector<int> searchRange(vector<int>& nums, int target) {
-        // Base Case
-        if(nums.size()==1)
-        {
-            if(nums[0]==target)
-            return {0,0};
+    int firstOcc(vector<int>arr,int k){
+        int s=0,e=arr.size()-1,mid=(s+e)/2;
+        int idx=-1;
+        while(s<=e){
+            if(arr[mid]>=k){
+                if(arr[mid]==k)
+                idx=mid;
+                e=mid-1;
+            }
             else
-            return {-1,-1};
+            s=mid+1;
+            mid=(s+e)/2;
         }
-        
-        vector<int>ans;
-        // First Occurance.
-        ans.push_back(FirstOccurance(nums,target));
-        ans.push_back(LastOccurance(nums,target));
-        return ans;
+        return idx;
+    }
+
+    int lastOcc(vector<int>arr,int k){
+        int s=0,e=arr.size()-1,mid=(s+e)/2;
+        int idx=-1;
+        while(s<=e){
+            if(arr[mid]<=k){
+                if(arr[mid]==k)
+                idx=mid;
+                s=mid+1;
+            }
+            else
+            e=mid-1;
+            mid=(s+e)/2;
+        }
+        return idx;
+    }
+
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int>pos;
+        pos.push_back(firstOcc(nums,target));
+        pos.push_back(lastOcc(nums,target));
+        return pos;
     }
 };
