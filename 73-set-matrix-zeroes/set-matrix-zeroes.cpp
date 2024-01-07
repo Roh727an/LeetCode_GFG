@@ -1,37 +1,31 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        // Approch 2 : Queue Approch
-        // queue<row,col>q
-        queue<pair<int,int>>q;
         int n=matrix.size();
         int m=matrix[0].size();
-        // 1.Store all Indexes of 0s
+        // Approch 3 : Row & Column Approch
+        vector<int>row(n,-1);
+        vector<int>col(m,-1);
+
+        // 1.Traverse the Matrix & Mark accordingly into Row & Col Array
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
                 if(matrix[i][j]==0)
                 {
-                    q.push({i,j});
+                    row[i]=0;
+                    col[j]=0;
                 }
             }
         }
-        // 2.Put an element from Queue & Make that row & Column 0
-        while(!q.empty())
+        // 2.Taraverse again & Convert 0
+        for(int i=0;i<n;i++)
         {
-            int row=q.front().first;
-            int col=q.front().second;
-            q.pop();
-            // Make the Row 0
-            for(int i=0;i<m;i++)
+            for(int j=0;j<m;j++)
             {
-                matrix[row][i]=0;
-            }
-            // Make the col 0
-            for(int i=0;i<n;i++)
-            {
-                matrix[i][col]=0;
+                if(row[i]==0 || col[j]==0)
+                matrix[i][j]=0;
             }
         }
     }
