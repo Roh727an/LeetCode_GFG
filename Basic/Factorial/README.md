@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/factorial5739/1">Factorial</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a positive integer,&nbsp;<strong>N</strong>. Find the factorial of <strong>N</strong>.</span><br>
+<h2><a href="https://www.geeksforgeeks.org/problems/factorial5739/1">Factorial</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a positive integer,&nbsp;<strong>N</strong>. Find the factorial of <strong>N</strong>.</span><br>
 &nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
