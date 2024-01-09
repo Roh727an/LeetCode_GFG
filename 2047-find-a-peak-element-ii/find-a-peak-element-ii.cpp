@@ -1,57 +1,45 @@
 class Solution {
 public:
-// Find's Maxium Element/Absoulte Peak Element index in Column
-int maxElementInColumn(vector<vector<int>>& mat,int col,int rowNo)
+// Returns Max Row 
+int maxEleCol(vector<vector<int>>& mat,int n,int m,int col)
 {
-    int maxEleIdx=0;
-    for(int i=0;i<rowNo;i++)
+    int maxEle=INT_MIN;
+    int idx=-1;
+    for(int i=0;i<n;i++)
     {
-        maxEleIdx=mat[i][col] > mat[maxEleIdx][col] ? i:maxEleIdx; 
+        if(mat[i][col]>maxEle)
+        {
+            maxEle=mat[i][col];
+            idx=i;
+        }
     }
-    return maxEleIdx;
+    return idx;
 }
-// Find's If WE have to Meve LEft Side or Not??
-bool Move_LeftSide(vector<vector<int>>& mat,int midCol,int n,int rightCol)
-{
-    // Let's Get The Max Column Element Row
-    int maxElementInCol_rowIdx=maxElementInColumn(mat,midCol,n);
-
-    // Compare with Mid+1 -> Peak Element Logic
-    // Before that check it's Column Range (leftCol<=midCol+1<=rightCol)
-    // if it is in range& midcol > midCol+1 then return true as we want to move left side
-    return (midCol+1<=rightCol) && (mat[maxElementInCol_rowIdx][midCol] >mat[maxElementInCol_rowIdx][midCol+1]);
-    //       Range Check        &&          Peak Element Condition / Move Left Condition
-}
-
-
     vector<int> findPeakGrid(vector<vector<int>>& mat) {
-        // UsingBinary Search Concept Select a Random Column using Mid
         int n=mat.size();
         int m=mat[0].size();
-        // leftCol= first Column
-        int leftCol=0;
-        // rightcol= last Column
-        int rightCol=m-1;
 
-        while(leftCol<rightCol)
+        int s=0;
+        int e=m-1;
+        // Binary Search in Each Column
+        while(s<=e)
         {
-            // Find Middle Column/Random Column/Searching Column
-            int midCol= leftCol + (rightCol-leftCol)/2;
-
-            // Check Which Side to Move
-            // Left Side?(Include Mid)
-            if(Move_LeftSide(mat,midCol,n,rightCol))
-            {
-                rightCol=midCol;
+            int mid=(s+e)/2;
+            // Row will be maxium element of the Column
+            int row=maxEleCol(mat,n,m,mid);
+            // As we Take the Largest element in the Column so we ddid have to check for upper & Lower Adjacent Element
+            // We simply check left & Right
+            int left= mid-1 >= 0 ? mat[row][mid-1]:-1;
+            int right= mid+1 < m ? mat[row][mid+1]:-1;
+            // If current element is Peak
+            if(mat[row][mid] > left && mat[row][mid] > right)
+            return {row,mid};
+            else if(mat[row][mid] < left){
+                e=mid-1;
             }
-            // Move Right Side(Exclude mid)
             else
-            leftCol=midCol+1;
+            s=mid+1;
         }
-        // Our left Column Holds Our Answer
-        // But Which Row?? ->Max Element Present Row
-        int peakRowInLeftCol=maxElementInColumn(mat,leftCol,n);
-
-        return vector<int> {peakRowInLeftCol,leftCol};
+        return {-1,-1};
     }
 };
