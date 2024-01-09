@@ -7,23 +7,18 @@ using namespace std;
 class Solution
 {
 public:
-void rec(int i,int n)
+void print(int i,int n)
 {
-    // Base Condition
-    if(i>n)
-    return ;
-    // Print Value
-    cout<<i<<" ";
-    // Increment i
-    i++;
-    // Recursive Call
-    rec(i,n);
+    // Base Case
+        if(i>n)
+        return ;
+        cout<<i<<" ";
+        print(i+1,n);
 }
     void printTillN(int N)
     {
         // Write Your Code here
-        int i=1;
-        rec(i,N);
+        print(1,N);
     }
 };
 
