@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/sum-of-first-n-terms5843/1">Sum of first n terms</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an integer N.Calculate the sum of series <strong>1<sup>3</sup> + 2<sup>3</sup> + 3<sup>3</sup> + 4<sup>3</sup> + …</strong>&nbsp;till N-th term.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/sum-of-first-n-terms5843/1">Sum of first n terms</a></h2><h3>Difficulty Level : Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an integer N.Calculate the sum of series <strong>1<sup>3</sup> + 2<sup>3</sup> + 3<sup>3</sup> + 4<sup>3</sup> + …</strong>&nbsp;till N-th term.</span></p>
 <p><strong><span style="font-size: 18px;">Example 1:</span></strong></p>
 <pre><span style="font-size: 18px;"><strong>Input:</strong>
 N=5
