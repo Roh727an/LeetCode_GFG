@@ -10,45 +10,47 @@ using namespace std;
 class Solution{
   public:
     /*You are required to complete this method */
-    bool isNumber(char ch)
-  {
-    return ch=='0'||ch=='1'||ch=='2'||ch=='3'||ch=='4'||ch=='5'||ch=='6'||ch=='7'||ch=='8'||ch=='9';
-  }
-    /*You are required to complete this method */
-    int rec(string s,int idx,int &num,bool neg)
-    {
-        // Base Case
-        if(idx>=s.length())
+    int atoi(string s) {
+        //Your code here
+        int len=s.length();
+        // Skip the Spaces as well as +,- sign at the begining & count +,-
+        int i=0,pos=0,neg=0;
+        while(i<len && s[i]==' ')
         {
-            if(neg)
-            return num*(-1);
-            return num;
+            i++;
         }
-        // If it is Not a Digit=> Return false
-        if(!isNumber(s[idx]))
+        while(i<len &&  s[i]=='+' || s[i]=='-')
+        {
+            if(s[i]=='+') pos++;
+            else if(s[i]=='-') neg++;
+            i++;
+        }
+        // If pos & neg >0 -> INVALID
+        if(pos>0 && neg>0  || pos>1 || neg>1)
         return -1;
 
-        // Get the Digit in Integer
-        if(isNumber(s[idx])){
-        int dig=s[idx]-'0';
-        // Calculate Number
-        num=num*10+dig;
+        long long int num=0;
+        // Convert into Number
+        while(i<len && (s[i]>='0' && s[i]<='9'))
+        {
+            if(num>2147483647)
+            break;
+            num=(num*10) + (s[i]-'0');
+            i++;
         }
-        // Increment Index
-        idx++;
-        // Recursive Call
-        return rec(s,idx,num,neg);
-    }
-    int atoi(string str) {
-        //Your code here
-        bool neg=false;
-        int idx=0;
-        if(str[0]=='-'){
-        neg=true;
-        idx=1;
-        }
-        int num=0;
-        return rec(str,idx,num,neg);
+        if(s[i]>='a' && s[i]<='z' || s[i]=='+' || s[i]=='.' || s[i]=='-')
+            return -1;
+        // We get the Num 
+        if(neg>0 && num!=0)
+        num=-num;
+
+        if(num>2147483647)
+        return 2147483647;
+        if(num<-2147483648)
+        return -2147483648;
+
+        return num;
+        
     }
 };
 
