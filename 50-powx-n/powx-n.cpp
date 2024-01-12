@@ -1,30 +1,30 @@
 class Solution {
 public:
+double rec(double x,long long n,double &ans)
+{
+    // Base Case
+    if(n<=0)
+    return ans;
+
+    // n is Odd
+    if(n%2)
+    {
+        ans=ans*x;
+        n=n-1;
+    }
+    else
+    {
+        x=x*x;
+        n=n/2;
+    }
+    return rec(x,n,ans);
+}
     double myPow(double x, int n) {
-        // BINARY EXPONENTION
+        long long p=abs(n);
         double ans=1.0;
-        long long power=n;
-        // Negative Power
-        if(power<0)
-        power=-1*power;
-        while(power>0)
-        {
-            // If Power is ODD
-            if(power%2==1)
-            {
-                ans=ans*x;
-                power=power-1;
-            }
-            // IF Power is EVEN
-            else
-            {
-                x=x*x;
-                power=power/2;
-            }
-        }
-        // If the Power was Neagtive then
+        ans=rec(x,p,ans);
         if(n<0)
-        ans=(double)(1.0) / ans;
-        return ans; 
+        ans=(double)1.0/ans;
+        return ans;
     }
 };
