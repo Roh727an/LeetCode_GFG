@@ -5,23 +5,56 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-     long long power(long long x, long long n){
-        if(n==0) return 1;
-        if(n==1) return x;
+      // Time Complexity-> O(N)
+    void rec(long long n,long long i,long long int &ans)
+    {
+        // Base Case
+        if(i>=n)
+        return;
+        // i is odd index
+        if(i%2)
+        ans*=4;
+        else
+        ans*=5;
         
-        long long ans = power(x,n/2);
-        if(n%2==0)
-            return ans*ans%1000000007;
-        
-        return x*ans*ans%1000000007;
+        ans=ans%1000000007;
+        rec(n,i+1,ans);
     }
-    int countGoodNumbers(long long N) {
+
+    long long power(long long x,long long n,long long &ans)
+    {
+        if(n<=0)
+        return ans;
+        // Odd
+        if(n%2)
+        {
+            ans=ans*x;
+            ans=ans%1000000007;
+            n=n-1;
+        }
+        // Even
+        else
+        {
+            x=x*x;
+            x=x%1000000007;
+            n=n/2;
+        }
+        return power(x,n,ans);
+    }
+    int countGoodNumbers(long long n) {
         // code here
-        // int ans=1;
-        // ans=count(N,ans);
-        long long even_index=(N/2)+(N%2);
-        long long odd_index=N-even_index;
-        return (power(5,even_index)%1000000007)* (power(4,odd_index)%1000000007) %1000000007 ;
+        long long int ans=1;
+        // Time Complexity-> O(N)
+        // rec(n,0,ans);
+        // Iterative Approch
+        long long odd=n/2;
+        long long even=n/2 + n%2;
+        long long oddPow=1;
+        oddPow=power(4,odd,oddPow);
+        long long evenPow=1;
+        evenPow=power(5,even,evenPow);
+        ans=(evenPow*oddPow)%1000000007;
+        return ans;
     }
 };
 
