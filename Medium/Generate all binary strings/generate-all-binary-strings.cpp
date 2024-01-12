@@ -9,42 +9,31 @@ using namespace std;
 
 class Solution{
 public:
-        void rec(string s, int n)
+    void rec(int n,int i,string s,vector<string>&ans)
     {
-        // Base Case
-        if (s.length() >= n)
+        if(i>=n)
         {
-            bool check = true;
-            for (int i = 0; i < s.length() - 1; i++)
-            {
-                // Consicutive One
-                if (s[i] == '1' && s[i + 1] == '1')
-                {
-                    check = false;
-                    break;
-                }
-            }
-            if (check)
-                cout << s << " ";
-            return;
+         ans.push_back(s);
+         return ;
         }
-        // Push 0 into String
+        
+        // Pick Zero Or Leave
         s.push_back('0');
-        // Recursive Call(For 0)
-        rec(s, n);
-        // Pop the last added 0 from String
+        rec(n,i+1,s,ans);
         s.pop_back();
-        // Push 1 into String
+        // PIck 1 When String is Empty or Last Character is not 1
+        if(s.empty() || s.back()!='1')
+        {
         s.push_back('1');
-        // Recursive Call(For 0)
-        rec(s, n);
+        rec(n,i+1,s,ans);
+        s.pop_back();
+        }
     }
-    void generateBinaryStrings(int num)
-    {
-        // Write your code
-
-        string s = "";
-        rec(s, num);
+    vector<string> generateBinaryStrings(int num){
+        //Write your code
+        vector<string>ans;
+        rec(num,0,"",ans);
+        return ans;
     }
 };
 
@@ -59,7 +48,9 @@ int main(){
         int n; cin >> n;
 
         Solution obj;
-        obj.generateBinaryStrings(n);
+        
+        vector<string> v = obj.generateBinaryStrings(n);
+        for(auto it:v) cout<<it<<" ";
         cout << endl;
     }
 
