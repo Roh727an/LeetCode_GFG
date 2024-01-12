@@ -7,52 +7,39 @@ using namespace std;
 class Solution{
     public:
     //You need to complete this fucntion
-    
-    long long rec(int n,int r,long long &ans)
-    {
-        // Base Case
-       if(r<=0)
-       return ans;
-       ans=ans*n;
-       ans=ans%1000000007;
-       r--;
-       return rec(n,r,ans);
+long long rec(long long x,long long n,long long &ans)
+{
+    // Base Case
+    if(n<=0)
+    return ans;
 
-    }
-    long long rec_Optimised(int n,int r,long long &ans)
+    // n is Odd -> x^n= x^1 * x^(n-1)
+    if(n%2)
     {
-        // Base Case
-       if(r<=0)
-       return ans%1000000007;
-       
-       if(r%2==0)
-       {
-        n=n*n;
-        r=r/2;
-       }
-       else
-       {
-        ans=ans*n;
+        ans=ans*x;
         ans=ans%1000000007;
-        r--;
-       }
-       return rec(n,r,ans);
-
+        n=n-1;
     }
+    // n is even -> x^n=(x^2)^(n/2)
+    else
+    {
+        x=x*x;
+        x=x%1000000007;
+        n=n/2;
+    }
+    // Recursive Call
+    return rec(x,n,ans);
+}
     long long power(int N,int R)
     {
        //Your code here
+       long long ans=1;
+       long long n=N,r=R;
+       ans=rec(n,r,ans);
        
-      if(R==0)
-      return 1;
-      if(R==1)
-      return N%1000000007;
-      long long ans=1;
-      long long temp=(power(N,R/2)%1000000007);
-      if(R%2)
-      ans=(ans*N) %1000000007;
-      return (ans*((temp*temp)%1000000007))%1000000007;
-
+    //   ans=ans%1000000007;
+       return ans;
+        
     }
 
 };
