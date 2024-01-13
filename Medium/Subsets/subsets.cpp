@@ -11,30 +11,29 @@ using namespace std;
 class Solution
 {
     public:
-    void rec(vector<vector<int>>&ans,vector<int>v,vector<int>ds,int idx,int n)
+        void rec(int i,int n,vector<int>temp,vector<vector<int>>&ans,vector<int>& nums)
     {
         // Base Case
-        if(idx>=n)
+        if(i>=n)
         {
-            ans.push_back(ds);
-            return;
+            ans.push_back(temp);
+            return ;
         }
-        // Pick & Recusive Call
-        ds.push_back(v[idx]);
-        rec(ans,v,ds,idx+1,n);
-        // Pop
-        // Not Pick & Recursive Call
-        ds.pop_back();
-        rec(ans,v,ds,idx+1,n);
+        // Pick an element
+        temp.push_back(nums[i]);
+        // Recursive Call with picked element
+        rec(i+1,n,temp,ans,nums);
+        // Pop the Element 
+        temp.pop_back();
+        // Recursive without picking element
+        rec(i+1,n,temp,ans,nums);
     }
-    vector<vector<int>> subsets(vector<int>& A)
+    vector<vector<int> > subsets(vector<int>& nums)
     {
         //code here
-        int n=A.size();
-        vector<int>ds;
-        int idx=0;
-        vector<vector<int>> ans;
-        rec(ans,A,ds,idx,n);
+        vector<vector<int>>ans;
+        vector<int>temp;
+        rec(0,nums.size(),temp,ans,nums);
         sort(ans.begin(),ans.end());
         return ans;
     }
