@@ -14,35 +14,39 @@ vector<string> AllParenthesis(int n) ;
 class Solution
 {
     public:
-    void rec(vector<string>&ans,int open,int close,int n,string s)
-    {
-        // Base Case
-        if(open==n && close==n)
+        void rec(int i,int n,string s,int open,int close,vector<string>&ans){
+        // Base Case (n=2*n as Number of Open Paranthesis = Number of Close Paranthesis)
+        if(i>=2*n)
         {
             ans.push_back(s);
-            return ;
+            return;
         }
-        // We add Openning Bracket till open is Less than N
+        // IF open paranthesis is less than n then we pick open parantheiss
         if(open<n)
         {
-        s.push_back('(');
-        rec(ans,open+1,close,n,s);
-        s.pop_back();
+            s.push_back('(');
+            open=open+1;
+            rec(i+1,n,s,open,close,ans);
+            open=open-1;
+            s.pop_back();
         }
-        // We add Closing Bracket till close is Less than open
+        // We only pick a close paranthesis if the Number of open parantheisis is greater than close parantheis
         if(close<open)
         {
-        s.push_back(')');
-        rec(ans,open,close+1,n,s); 
-        s.pop_back();
+            s.push_back(')');
+            close=close+1;
+            rec(i+1,n,s,open,close,ans);
+            close=close-1;
+            s.pop_back();
         }
     }
     vector<string> AllParenthesis(int n) 
     {
         // Your code goes here 
-    vector<string>ans;
-    rec(ans,0,0,n,"");
-    return ans;
+        vector<string>ans;
+        int open=0,close=0,i=0;
+        rec(i,n,"",open,close,ans);
+        return ans;
     }
 };
 
