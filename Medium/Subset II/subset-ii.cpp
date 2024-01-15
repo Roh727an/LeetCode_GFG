@@ -10,29 +10,29 @@ using namespace std;
 class Solution {
 
   public:
-    void rec(int idx,vector<int>arr,vector<int>ds,set<vector<int>>&st)
-  {
-    // Base Case
-    if(idx>=arr.size())
+  void rec(int i,int n,vector<int>& nums,vector<int>temp,set<vector<int>>&ans)
+{
+    if(i>=n)
     {
-        st.insert(ds);
-        return ;
+        ans.insert(temp);
+        return;
     }
-    // Pick up Element
-    ds.push_back(arr[idx]);
-    rec(idx+1,arr,ds,st);
-    ds.pop_back();
-    // Non Pick Up 
-    rec(idx+1,arr,ds,st);
-  }
+    // Pick up
+    temp.push_back(nums[i]);
+    rec(i+1,n,nums,temp,ans);
+    // Backtracks
+    temp.pop_back();
+    // Not Pick
+    rec(i+1,n,nums,temp,ans);
+}
     vector<vector<int>> printUniqueSubsets(vector<int>& nums) {
         // Write your code here
-        vector<int>ds;
-        set<vector<int>>st;
         sort(nums.begin(),nums.end());
-        rec(0,nums,ds,st);
-        vector<vector<int>>ans(st.begin(),st.end());
-        return ans;
+         vector<int>temp;
+         set<vector<int>>st;
+         rec(0,nums.size(),nums,temp,st);
+         vector<vector<int>>ans(st.begin(),st.end());
+         return ans;
     }
 };
 
