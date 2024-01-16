@@ -9,38 +9,40 @@ using namespace std;
 
 class Solution {
   public:
-    void rec(int idx,vector<int>arr,vector<int>ds,vector<vector<int>>&ans,int sum)
+  void rec(int idx,int n,vector<int>nums,vector<int>temp,vector<vector<int>>&ans,int k){
+    // Base Case
+    if(k==0 || idx>=n)
     {
-        // Base Case
-
-            if(sum==0)
-            {
-            ans.push_back(ds);
-            return ;
-            }
-        // Pick Up & Non Pick Option from 0 to arr.size()-1
-        for(int i=idx;i<arr.size();i++)
-        {
-            // Same Element?-> Idx+1 Mvve one Index Ahed || Go to Next Element
-            if(i>idx && arr[i]==arr[i-1])
-            continue;
-            // Greater Element then Right of Array will be Grater so Break
-            if(arr[i]>sum)
-            break;
-            // Pick Up
-            ds.push_back(arr[i]);
-            // Recursive Call For that Index
-            rec(i+1,arr,ds,ans,sum-arr[i]);
-            // When Come Back from Recursive Call Make Sure to Pop the Last AddedElement
-            ds.pop_back(); 
-        }
+        if(k==0)
+        ans.push_back(temp);
+        return;
     }
+    // I have n-1 options to pick my first element of the Combination
+    for(int i=idx;i<n;i++)
+    {
+        // As the Array is Sorted sor duplicates will be adjecent
+        if(i>idx && nums[i]==nums[i-1])
+        continue;
+
+        // If my element is greater than k then break as there are more bigger eleemnt as the array is sorted
+        if(nums[i]>k)
+        break;
+
+        // Pick the element
+        temp.push_back(nums[i]);
+        // Recursive Call for Next Index
+        rec(i+1,n,nums,temp,ans,k-nums[i]);
+        // Backtracks
+        temp.pop_back();
+    }
+}
     vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
         // Write your code here
-        vector<int>ds;
-        vector<vector<int>>ans;
+        // sort the array so that duplicates become Adjacent
         sort(candidates.begin(),candidates.end());
-        rec(0,candidates,ds,ans,target);
+        vector<vector<int>>ans;
+        vector<int>temp;
+        rec(0,candidates.size(),candidates,temp,ans,target);
         return ans;
     }
 };
