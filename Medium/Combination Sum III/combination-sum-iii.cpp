@@ -6,32 +6,35 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-      void rec(int idx,int n,vector<int>arr,vector<int>ds,vector<vector<int>>&ans,int sum)
-  {
-    // Base Case
-    if(idx>=arr.size() || n==0 || arr[idx]>sum)
+      void rec(int i,int n,int sum,vector<int>temp,vector<vector<int>>&ans,int k)
     {
-        if(sum==0 && n==0)
-        ans.push_back(ds);
+        // Base Case
+        if(temp.size()==k || i>9)
+        {
+            if(sum==n && temp.size()==k )
+                ans.push_back(temp);
+            return ;
+        }
+        // i can pick 1-9 as my first element
+        for(int idx=i;idx<=9;idx++)
+        {
+            if(idx>n-sum)
+            break;
 
-        return ;
+            // Pick 
+            sum=sum+idx;
+            temp.push_back(idx);
+            rec(idx+1,n,sum,temp,ans,k);
+            sum=sum-idx;
+            temp.pop_back();
+        }
     }
-    // Pick Up Element
-    ds.push_back(arr[idx]);
-    rec(idx+1,n-1,arr,ds,ans,sum-arr[idx]);
-    ds.pop_back();
-    // Non Pick
-    rec(idx+1,n,arr,ds,ans,sum);
-  }
-    vector<vector<int>> combinationSum(int K, int N) {
+    vector<vector<int>> combinationSum(int k, int n) {
         // code here
-        vector<int>ds;//O(K)
-        vector<int>arr;//O(9)
-        for(int i=1;i<=9;i++)
-        arr.push_back(i);
-        vector<vector<int>>ans;//O(N*K)
-        rec(0,K,arr,ds,ans,N);
-        return ans;
+    vector<vector<int>>ans;
+      vector<int>temp;
+    rec(1,n,0,temp,ans,k);
+    return ans;
     }
 };
 
