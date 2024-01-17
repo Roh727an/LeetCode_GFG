@@ -13,40 +13,47 @@ using namespace std;
 class Solution
 {
     public:
-    //Function to find list of all words possible by pressing given numbers.
-    void rec(int idx,int N,int arr[],string ds,vector<string> &ans,string combinations[]){
+    void rec(int digIdx,int len,int digits[],string temp, vector<string>&ans,string mp[])
+    {
         // Base Case
-        if(idx>=N)
+        if(digIdx>=len)
         {
-            ans.push_back(ds);
-            return ;
+            ans.push_back(temp);
+            return;
         }
-        // Take out the Number
-        int number=arr[idx];
-        string comb=combinations[number];
-        // Try All Possible Combinatons
-
+        int digit=digits[digIdx];
+        string comb=mp[digit];
+        // Try all Combinations
         for(int i=0;i<comb.length();i++)
         {
-            // Push the Charecter
-            ds.push_back(comb[i]);
-            // Recursive Call for Next index
-            rec(idx+1,N,arr,ds,ans,combinations);
-            // Backtracking
-            ds.pop_back();
+            // Pick Element
+            temp.push_back(comb[i]);
+            rec(digIdx+1,len,digits,temp,ans,mp);
+            temp.pop_back();
         }
     }
-    vector<string> possibleWords(int a[], int N)
+    //Function to find list of all words possible by pressing given numbers.
+    vector<string> possibleWords(int digits[], int n)
     {
         //Your code here
-        if(N==0)
-        return {};
         vector<string>ans;
-        string ds;
-        string combinations[10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-
-        rec(0,N,a,ds,ans,combinations);
-
+        if(n==0)
+        return ans;
+        string temp="";
+        /*
+        map<int,string>mp;
+        mp[2]="abc";
+        mp[3]="def";
+        mp[4]="ghi";
+        mp[5]="jkl";
+        mp[6]="mno";
+        mp[7]="pqrs";
+        mp[8]="tuv";
+        mp[9]="wxyz";
+        */
+        // String Array for mapping
+        string mp[10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        rec(0,n,digits,temp,ans,mp);
         return ans;
     }
 };
