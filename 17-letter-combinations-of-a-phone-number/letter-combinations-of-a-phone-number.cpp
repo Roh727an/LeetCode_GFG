@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void rec(int digIdx,int len,string digits,string temp, vector<string>&ans,map<int,string>mp)
+    void rec(int digIdx,int len,string digits,string temp, vector<string>&ans,string mp[])
     {
         // Base Case
         if(digIdx>=len)
@@ -25,6 +25,7 @@ public:
         if(n==0)
         return ans;
         string temp="";
+        /*
         map<int,string>mp;
         mp[2]="abc";
         mp[3]="def";
@@ -34,7 +35,9 @@ public:
         mp[7]="pqrs";
         mp[8]="tuv";
         mp[9]="wxyz";
-
+        */
+        // String Array for mapping
+        string mp[10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         rec(0,n,digits,temp,ans,mp);
         return ans;
     }
