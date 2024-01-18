@@ -9,74 +9,76 @@ using namespace std;
 
 class Solution{
 public:
-    bool isValid(int row,int col,vector<string>grid,int n)
+bool isValidMove(int r,int c,vector<string>grid,int n)
 {
     // Check all 8 Directions
-    // AS we Filling Up Queens from Left To Right Column then We Just Have to Check 3 Directions only-
-    // 1.Left
-    int r=row;
-    int c=col;
-    // Up-Left
-    while(r>=0 && c>=0)
+    // As we are filling column from left to right so,i only have to check left-up,left,left-down
+    // lef-tup
+    int row=r,col=c;
+    while(row>=0 && col>=0)
     {
-        if(grid[r][c]!='.')
+        if(grid[row][col]=='Q')
         return false;
-        c--;
-        r--;
+
+        row--;
+        col--;
     }
-     r=row;
-     c=col;
-    // LEft
-    while(c>=0)
+    // Left-Down
+    row=r,col=c;
+    while(row<n && col>=0)
     {
-        if(grid[r][c]!='.')
+        if(grid[row][col]=='Q')
         return false;
-        c--;
+
+        row++;
+        col--;
     }
-    
-     r=row;
-     c=col;
-    // Down-Left
-    while(r<n && c>=0)
+    // Left
+    row=r,col=c;
+    while(col>=0)
     {
-        if(grid[r][c]!='.')
+        if(grid[row][col]=='Q')
         return false;
-        c--;
-        r++;
+        col--;
     }
 
     return true;
 }
-void rec(int col,vector<string>grid,vector<vector<int>>&ans,vector<int>queens,int n)
+
+void rec(int col,int n,vector<string>grid,vector<vector<int>>&ans,vector<int>pos)
 {
     // Base Case
     if(col>=n)
     {
-        ans.push_back(queens);
+        ans.push_back(pos);
         return;
     }
-    for(int i=0;i<n;i++)
+    // Check for all rows of a particular Column
+    for(int row=0;row<n;row++)
     {
-        if(isValid(i,col,grid,n))
+        // if the Current Move is Valid
+        if(isValidMove(row,col,grid,n))
         {
-            queens.push_back(i+1);
-            grid[i][col]='Q';
-            rec(col+1,grid,ans,queens,n);
-            grid[i][col]='.';
-            queens.pop_back();
+            // Mark the Move
+            grid[row][col]='Q';
+            pos.push_back(row+1);
+            // Recursive Call for next Column
+            rec(col+1,n,grid,ans,pos);
+            // Backtracks
+            grid[row][col]='.';
+            pos.pop_back();
         }
     }
 }
     vector<vector<int>> nQueen(int n) {
         // code here
-        // 1.Create the ChessBoard
         vector<string>grid;
         string s(n,'.');
         for(int i=0;i<n;i++)
         grid.push_back(s);
         vector<vector<int>>ans;
-        vector<int>queens;
-        rec(0,grid,ans,queens,n);
+        vector<int>pos;
+        rec(0,n,grid,ans,pos);
         return ans;
     }
 };
