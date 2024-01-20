@@ -10,41 +10,43 @@ using namespace std;
 
 class Solution{
     public:
-    int rdir[4]={1,0,0,-1};
-    int cdir[4]={0,-1,1,0};
-    void rec(int row,int col,int n,vector<vector<int>>& m,vector<string>& ans,string path,vector<vector<int>>& vis)
+    void rec(int row,int col,int n,string s,vector<vector<int>> &path,vector<string>&ans)
     {
-        //Base Case
+        // Base Case
+        if(row>=n || col>=n || col<0 || row<0 || path[row][col]!=1)
+        return;
+        
         if(row==n-1 && col==n-1)
         {
-            ans.push_back(path);
-            return ;
+            ans.push_back(s);
+            return;
         }
-        // Check Four Direction -> Down,Left,Right,Up
+        
+        // D L R U
         string dir="DLRU";
+        int rowDir[4]={1,0,0,-1};
+        int colDir[4]={0,-1,1,0};
+        // Mark as Visited
+        path[row][col]=-1;
+        // Try All 4 Directions
         for(int i=0;i<4;i++)
         {
-            int nrow=row+rdir[i];
-            int ncol=col+cdir[i];
-            // Check -Bound && Not Visited && Can Move
-            if(nrow<n && nrow>=0 && ncol<n && ncol>=0 & !vis[nrow][ncol] && m[nrow][ncol]==1)
-            {
-                // Mark as Visited
-                vis[row][col]=1;
-                // Recursive Call for Next Move
-                rec(nrow,ncol,n,m,ans,path+dir[i],vis);
-                // Unvisited when Backtracks
-                vis[row][col]=0;
-            }
+            
+            s.push_back(dir[i]);
+            int nRow=row+rowDir[i];
+            int nCol=col+colDir[i];
+            rec(nRow,nCol,n,s,path,ans);
+            s.pop_back();
         }
+        path[row][col]=1;
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
         vector<string>ans;
-        vector<vector<int>>vis(n,vector<int>(n,0));
-        if(m[0][0]==1)
-        rec(0,0,n,m,ans,"",vis);
-
-        return ans;
+        string s;
+        rec(0,0,n,s,m,ans);
+        return ans; 
+        
     }
 };
 
