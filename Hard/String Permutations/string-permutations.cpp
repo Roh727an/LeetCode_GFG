@@ -6,28 +6,28 @@ using namespace std;
 class Solution{
     public:
     //Complete this function
-    void rec(int idx,string &nums,vector<string>&ans)
+    void rec(int idx,int n,string nums,vector<string>&ans)
+{
+    // Base Case
+    if(idx >= n)
     {
-        if(idx>=nums.size())
-        {
-            ans.push_back(nums);
-            return ;
-        }
-        for(int i=idx;i<nums.size();i++)
-        {
-            // Swap ith element with index element
-            swap(nums[idx],nums[i]);
-            // Recursive Call
-            rec(idx+1,nums,ans);
-            // Backtracks
-            swap(nums[idx],nums[i]);
-        }
+        ans.push_back(nums);
+        return;
     }
+
+    for(int i=idx;i<n;i++)
+    {
+            swap(nums[i],nums[idx]);
+            rec(idx+1,n,nums,ans);
+            swap(nums[i],nums[idx]);
+    }
+}
     vector<string> permutation(string S)
     {
         //Your code here
+        int n=S.length();
         vector<string>ans;
-        rec(0,S,ans);
+        rec(0,n,S,ans);
         sort(ans.begin(),ans.end());
         return ans;
     }
