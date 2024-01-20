@@ -1,33 +1,27 @@
 class Solution {
 public:
-void rec(int idx,int n,vector<int>pm,vector<int> nums,vector<int> vis,vector<vector<int>>&ans)
+// Recursive Approch
+void rec(int idx,int n,vector<int> nums,vector<vector<int>>&ans)
 {
     // Base Case
-    if(idx >= n || pm.size() == n)
+    if(idx >= n)
     {
-        ans.push_back(pm);
+        ans.push_back(nums);
         return;
     }
 
-    for(int i=0;i<n;i++)
+    for(int i=idx;i<n;i++)
     {
-        // Not Visited
-        if(vis[i]==0)
-        {
-            pm.push_back(nums[i]);
-            vis[i]=1;
-            rec(idx+1,n,pm,nums,vis,ans);
-            vis[i]=0;
-            pm.pop_back();
-        }
+            swap(nums[i],nums[idx]);
+            rec(idx+1,n,nums,ans);
+            swap(nums[i],nums[idx]);
     }
 }
+
     vector<vector<int>> permute(vector<int>& nums) {
         int n=nums.size();
-        vector<int>visited(n,0);
         vector<vector<int>>ans;
-        vector<int>temp;
-        rec(0,n,temp,nums,visited,ans);
+        rec(0,n,nums,ans);
         return ans;
     }
 };
