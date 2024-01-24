@@ -11,28 +11,25 @@
 class Solution {
 public:
     ListNode* deleteMiddle(ListNode* head) {
-    // Base Case
-        if(head==NULL ||head->next==NULL)
+        // Base Case
+        if(head==NULL || head->next==NULL)
         return NULL;
-        // 1.Take Three Pointer slow & Fast & prev
-    ListNode* slow=head;
-    ListNode* fast=head;
-    ListNode* prev=NULL;
-    // 2.Traverse till Not NUll or Last Node
-        while(fast!=NULL && fast->next !=NULL)
+        // Fast Pointer -> 2 Step
+        ListNode* fast=head;
+        // Slow Pointer -> 1 Step
+        ListNode* slow=head;
+        ListNode* prev=NULL;
+        while(fast!=NULL && fast->next!=NULL)
         {
-            // a.Make prev as Slow
-            prev=slow;
-            // b.Move Slow Pointer By One Step
-            slow=slow->next;
-            // c.Move Fast Pointer By Two Step
             fast=fast->next;
             if(fast!=NULL)
             fast=fast->next;
+            prev=slow;
+            slow=slow->next;
         }
-        // 3.When Fast Reaches Last Or NULL Slow is Pointing Middle Node
-        prev->next=slow->next;
-        slow->next=NULL;
-        return head;
+        // prev -> slow........fast
+       prev->next=slow->next;
+       slow->next=NULL;
+       return head;
     }
 };
