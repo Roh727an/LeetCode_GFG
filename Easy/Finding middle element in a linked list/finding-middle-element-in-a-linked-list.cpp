@@ -42,40 +42,22 @@ class Solution{
     int getMiddle(Node *head)
     {
         // Your code here
-        /*
-        // Approch 1
-        // Base Case
-        if(head==NULL)
-        return -1;
-        // 1.Count Number of Nodes Present in Linked List
-        Node* temp=head;
-        int NodeCount=countNodes(temp);
-        cout<<"Total Nodes "<<NodeCount<<endl;
-        int mid=NodeCount/2;
-        int cnt=0;
-        // 2.Find Middle Element
-        while(cnt<mid)
-        {
-            head=head->next;
-            cnt++;
-        }
+            // Base Case
+            if(head==NULL )
+            return -1;
+        if(head->next==NULL)
         return head->data;
-        */
-        // Approch 2->
-        // 1.Take Two Pointer slow & Fast
-        Node* slow=head;
+        // Fast Pointer -> 2 Step
         Node* fast=head;
-        // 2.Traverse till Not NUll or Last Node
-        while(fast!=NULL && fast->next !=NULL)
+        // Slow Pointer -> 1 Step
+        Node* slow=head;
+        while(fast!=NULL && fast->next!=NULL)
         {
-            // a.Move Slow Pointer By One Step
-            slow=slow->next;
-            // b.Move Fast Pointer By Two Step
             fast=fast->next;
             if(fast!=NULL)
             fast=fast->next;
+            slow=slow->next;
         }
-        // 3.When Fast Reaches Last Or NULL Slow is Pointing Middle Node
         return slow->data;
     }
 };
