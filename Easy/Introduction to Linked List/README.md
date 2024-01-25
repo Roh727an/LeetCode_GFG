@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/introduction-to-linked-list/1">Introduction to Linked List</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Geek loves <strong>l</strong><strong>inked list</strong> data structure. Given an array of integer <strong>arr</strong> of size <strong>n</strong>, Geek wants to construct the linked list from <strong>arr</strong>.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/introduction-to-linked-list/1">Introduction to Linked List</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Geek loves <strong>l</strong><strong>inked list</strong> data structure. Given an array of integer <strong>arr</strong> of size <strong>n</strong>, Geek wants to construct the linked list from <strong>arr</strong>.</span></p>
 
 <p><span style="font-size:18px">Construct the linked list from <strong>arr</strong> and return the <strong>head</strong> of the linked list.</span></p>
 
