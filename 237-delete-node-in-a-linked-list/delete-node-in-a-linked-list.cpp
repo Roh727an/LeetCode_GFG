@@ -9,15 +9,17 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        while(node!=NULL)
+        // Instead of Node Push the Node value to the End & Delete the Last Node
+        ListNode* prev=node;
+        ListNode* curr=node;
+        int data=node->val;
+        while(curr->next!=NULL)
         {
-            // 1.Copy Next Node Value to Current Node Value
-            node->val=node->next->val;
-            // 2.2nd Last Node -> Make the 2nd Last Node as Last Node
-            if(node->next!=NULL && node->next->next==NULL)
-            node->next=NULL;
-            // 3.Update Node
-            node=node->next;
+            prev=curr;
+            curr->val=curr->next->val;
+            curr=curr->next;
         }
+        prev->next=curr->next;
+
     }
 };
