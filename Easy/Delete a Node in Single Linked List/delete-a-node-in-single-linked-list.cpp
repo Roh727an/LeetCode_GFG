@@ -87,46 +87,26 @@ struct Node
 Node* deleteNode(Node *head,int x)
 {
     //Your code here
-    // Base Case
-    if(head==NULL)
-    return head;
-    
-    //  1.Delete First Node
-    if (x == 1)
+    Node* prev=NULL;
+    Node* curr=head;
+    while(curr!=NULL)
     {
-        // A.Create a Temp Node Pointing at Head
-        Node *temp = head;
-        // B.Update head as head's Next
-        head = head->next;
-        // C.Point Temp's Next to NULL
-        temp->next = NULL;
-        
-        return head;
-    }
-    // 2.Delete Middle Or Last Node
-    else
-    {
-        Node* ans=head;
-        // 1.Create a prev Node Pointing at NULL
-        Node *prev = NULL;
-        // 2.Create a Curr Node Pointing at head
-        Node *curr = head;
-        // 3.Traverse Both Node till Position &
-        int cnt = 1;
-        while (cnt < x)
+        // Delete Logic
+        if(x==1)
         {
-            // a.First Update prev as curr
-            prev = curr;
-            // b.Then Update Curr as curr's next
-            curr = curr->next;
-
-            cnt++;
+            // First Node
+            if(prev==NULL)
+            return head->next;
+            // Not the First Node
+            else{
+            prev->next=curr->next;
+            curr->next=NULL;
+            return head;
+            }
         }
-        // 4.After Traversal,Points Prev's Next to Curr's Next
-        prev->next = curr->next;
-        // 5.Points Curr's next to Null
-        curr->next = NULL;
-        
-        return ans;
+        x--;
+        prev=curr;
+        curr=curr->next;
     }
+    return head;
 }
