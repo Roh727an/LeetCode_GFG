@@ -1,41 +1,47 @@
 class MyQueue {
 public:
-    stack<int>s1;
-    stack<int>s2;
+    stack<int>st;
+    stack<int>refSt; 
     MyQueue() {
-        
+
     }
     
     void push(int x) {
-        // 1.Put all Elements from Stack 1 to Stack 2
-        while(!s1.empty())
+        // cout<<"Push "<<x<<endl;
+        // Move all Elements from s1 to s2
+        while(!st.empty())
         {
-            s2.push(s1.top());
-            s1.pop();
+        refSt.push(st.top());
+        st.pop();
         }
-        // 2.Push into Stack 2
-        s2.push(x);
-        // 3.Put back all Elements from Stack 2 to Stack 1
-        while(!s2.empty())
+        // Push into s1
+        st.push(x);
+        // Move all Elements from s2 to s1
+        while(!refSt.empty())
         {
-            s1.push(s2.top());
-            s2.pop();
+        st.push(refSt.top());
+        refSt.pop();
         }
+        // cout<<"Top of s1 is "<<st.top()<<endl;
     }
     
     int pop() {
-        // Simple Pop from stack 1
-        int ele=s1.top();
-        s1.pop();
-        return ele;
+        int val=st.top();
+        st.pop();
+        // cout<<"Pop "<<val<<endl;
+        return val;
     }
     
     int peek() {
-        return s1.top();
+        // cout<<"peak "<<st.top()<<endl;
+        if(st.empty())
+        return -1;
+        return st.top();
     }
     
     bool empty() {
-        return s1.empty();
+        // cout<<"empty "<<st.empty()<<endl;
+        return st.empty();
     }
 };
 
