@@ -12,6 +12,7 @@ class Solution{
     /*You are required to complete this method */
     int atoi(string s) {
         //Your code here
+        //Your code here
         int len=s.length();
         // Skip the Spaces as well as +,- sign at the begining & count +,-
         int i=0,pos=0,neg=0;
