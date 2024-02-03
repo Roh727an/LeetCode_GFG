@@ -18,15 +18,42 @@ public:
         // Base Case
         if(root==NULL)
         return ;
-        // Left
+        // Move Left
         postOrderRec(root->left);
-        // Right
+        // Move Right
         postOrderRec(root->right);
-        // Store
+        // Store  Current Node
         order.push_back(root->val);
     }
     vector<int> postorderTraversal(TreeNode* root) {
-        postOrderRec(root);
+        // Recursive Approch
+        // postOrderRec(root);
+        // Base Case
+        if(root==NULL)
+        return order;
+        // Child Node stores Childerns of the Current Nodes
+        stack<TreeNode*>child,postOrder;
+        child.push(root);
+        // Iterate till child Stack is Not Empty
+        while(!child.empty())
+        {
+            // Pop the First Child
+            TreeNode* topChild=child.top();
+            child.pop();
+            // Push it into the postOrder stack
+            postOrder.push(topChild);
+            // Push the topChild's Children (left then right)
+            if(topChild->left!=NULL)
+            child.push(topChild->left);
+            if(topChild->right!=NULL)
+            child.push(topChild->right);
+        }
+        // Take out postOrder
+        while(!postOrder.empty())
+        {
+            order.push_back(postOrder.top()->val);
+            postOrder.pop();
+        }
         return order;
     }
 };
