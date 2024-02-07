@@ -102,77 +102,27 @@ struct Node
  */
 
 class Solution{
-    private:
-        int height(struct Node* node){
-        //Recursive Approch
-        
-        //If Tree is Empty/There is an leaf node 
-        if(node==NULL)
-        return 0;
-        
-        //Recursive Call to Find Height of Left Subtree
-        int left=height(node->left);
-        //Recursive Call to Find Height of Right Subtree
-        int right=height(node->right);
-        
-        int ans=max(left,right)+1;
-        return ans;
-    }
     public:
     //Function to check whether a binary tree is balanced or not.
-    pair<bool,int> Balanced_Height(Node* root)
-    {
+    int height(Node* root){
+        if(root==0)
+        return 0;
         
-        //Base Case
-        if(root==NULL)
-        {
-            pair<bool,int>p=make_pair(true,0);
-            return p;
-        }
+        int left=height(root->left);
+        if(left==-1) return -1;
+        int right=height(root->right);
+        if(right==-1) return -1;
         
-        //Recursive Call for left Sub-Tree
-        pair<bool,int> left_subtree=Balanced_Height(root->left);
-        pair<bool,int> right_subtree=Balanced_Height(root->right);
+        if(abs(left-right)>1) return -1;
         
-        bool left=left_subtree.first;
-        bool right=right_subtree.first;
-        
-        bool diff=abs( left_subtree.second - right_subtree.second ) <=1;
-        
-        pair<bool,int> ans;
-        ans.second=max(left_subtree.second,right_subtree.second) +1;
-        
-        if(left && right && diff)
-        ans.first=true;
-        else
-        ans.first=false;
-        
-        return ans;
-        
+        return 1+ max(left,right);
     }
     bool isBalanced(Node *root)
     {
-        /*
-        //Non Optimised Approch
-        //Base Case
-        if(root==NULL)
-        return true;
-        
-        bool left=isBalanced(root->left);
-        bool right=isBalanced(root->right);
-        
-        bool diff=abs(height(root->left)-height(root->right)) <=1;
-        
-        if(left && right && diff)
-        return true;
-        else
-        return false;
-        */
-        //OPtimised Solution
-        return Balanced_Height(root).first;
+        //  Your Code here
+        return height(root)!=-1;
     }
 };
-
 
 
 //{ Driver Code Starts.
