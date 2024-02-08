@@ -11,19 +11,16 @@
  */
 class Solution {
 public:
-vector<int>t1,t2;
-    void inorder(TreeNode* root,vector<int>&t){
-        if(root==NULL){
-        t.push_back(-1);
-        return ;
-        }
-        t.push_back(root->val);
-        inorder(root->left,t);
-        inorder(root->right,t);
-    }
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        inorder(p,t1);
-        inorder(q,t2);
-        return t1==t2;
+        if(p==NULL && q==NULL)
+        return true;
+
+        if(p==NULL || q==NULL)
+        return false;
+
+        if(p->val!=q->val)
+        return false;
+
+        return isSameTree(p->left,q->left)&&isSameTree(p->right,q->right);
     }
 };
