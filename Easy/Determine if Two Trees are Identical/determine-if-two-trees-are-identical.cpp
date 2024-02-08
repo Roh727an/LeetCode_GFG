@@ -39,26 +39,22 @@ class Solution
 {
     public:
     //Function to check if two trees are identical.
-    bool isIdentical(Node *r1, Node *r2)
+    bool isIdentical(Node *p, Node *q)
     {
         //Your Code here
-        //Base Case
-    if(r1==NULL && r2== NULL)
-    return true;
-    if((r1==NULL && r2!=NULL)||(r1!=NULL && r2==NULL))
-    return false;
-    
-    //Recursive Call for Left Subtree
-    bool left=isIdentical(r1->left,r2->left);
-    //Recursive Call for Right Subtree
-    bool right=isIdentical(r1->right,r2->right);
-    
-    bool val_check=r1->data == r2->data;
-    
-    if(left && right && val_check)
-    return true;
-    else
-    return false;
+         // Both are Leaf Node
+        if(p==NULL && q==NULL)
+        return true;
+
+        // Any one of them is Leaf Node
+        if(p==NULL || q==NULL)
+        return false;
+
+        // Not Same Node
+        if(p->data!=q->data)
+        return false;
+
+        return isIdentical(p->left,q->left) && isIdentical(p->right,q->right);
     }
 };
 
