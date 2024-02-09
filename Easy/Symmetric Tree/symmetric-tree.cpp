@@ -101,23 +101,24 @@ struct Node {
 */
 class Solution{
     public:
+    int rec(Node* p,Node* q){
+    if(p==NULL && q==NULL)
+    return true;
+    if(p==NULL || q==NULL)
+    return false;
+
+    if(p->data != q->data)
+    return false;
+
+    return rec(p->left,q->right) && rec(p->right,q->left);
+}
     // return true/false denoting whether the tree is Symmetric or not
-    bool solve(struct Node* l,struct Node* r){
-        if(l==NULL && r==NULL)
-        return true;
-        if(l==NULL || r==NULL)
-        return false;
-        if(l->data != r->data)
-        return false;
-        
-        return solve(l->left,r->right) && solve(l->right,r->left);
-    }
     bool isSymmetric(struct Node* root)
     {
 	    // Code here
-	    if(root==NULL)
+	    if(root==NULL || root->left==NULL && root->right==NULL)
 	    return true;
-	    return solve(root->left,root->right);
+	    return rec(root->left,root->right);
     }
 };
 
