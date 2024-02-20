@@ -99,21 +99,28 @@ void inorder(struct Node* root)
 class Solution
 {
     public:
-    Node* prev=NULL;
     void flatten(Node *root)
     {
         //code here
         if(root==NULL)
-        return ;
+        return;
+        // Morris Traversal
+        Node* curr = root;
+        while (curr != NULL) {
 
-        // Move Right
-        flatten(root->right);
-        // Move Left
-        flatten(root->left);
+            if (curr->left!=NULL) {
+                Node* prev = curr->left;
+                // Find the Rightmost
+                while(prev->right) {
+                    prev = prev->right;
+                }
 
-        root->right=prev;
-        root->left=NULL;
-        prev=root;
+                prev->right = curr->right;
+                curr->right = curr->left;
+                curr->left=NULL;
+            }
+            curr = curr->right;
+        }
     }
 };
 
