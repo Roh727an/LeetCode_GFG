@@ -14,7 +14,7 @@ using namespace std;
 class Solution
 {
 public:
-    bool rec(string A,vector<string>&B)
+bool rec(string A,vector<string>&B)
     {
         // Base Case
         if(A.size()==0)
