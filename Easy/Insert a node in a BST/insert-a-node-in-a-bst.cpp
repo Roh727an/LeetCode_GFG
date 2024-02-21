@@ -35,33 +35,39 @@ struct Node {
 class Solution
 {
     public:
-        Node* insert(Node* root, int value) {
+        Node* insert(Node* root, int data) {
         
             // Your code goes here
-            if (!root) {
- 
-        // Insert the first node, if root is NULL.
-        return new Node(value);
-    }
- 
-    // Insert data.
-    if (value > root->data) {
-        // Insert right node data, if the 'value'
-        // to be inserted is greater than 'root' node data.
- 
-        // Process right nodes.
-        root->right = insert(root->right, value);
-    }
-    else if (value < root->data) {
-        // Insert left node data, if the 'value'
-        // to be inserted is smaller than 'root' node data.
- 
-        // Process left nodes.
-        root->left = insert(root->left, value);
-    }
- 
-    // Return 'root' node, after insertion.
-    return root;
+             if (root == NULL)
+            return new Node(data);
+
+        Node* curr = root;
+        while (curr != NULL) {
+            // Move Right
+            if(curr->data==data)
+            return root;
+            if (curr->data < data) {
+                // If there exist Right then Move Left
+                if (curr->right)
+                    curr = curr->right;
+                else {
+                    curr->right = new Node(data);
+                    break;
+                }
+
+            }
+            // Move Left
+            else {
+                // If there exist Left then Move Left
+                if (curr->left)
+                    curr = curr->left;
+                else {
+                    curr->left = new Node(data);
+                    break;
+                }
+            }
+        }
+        return root;
     }
 
 };
