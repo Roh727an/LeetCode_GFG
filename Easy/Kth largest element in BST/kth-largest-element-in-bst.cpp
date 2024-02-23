@@ -97,30 +97,26 @@ struct Node {
 class Solution
 {
     public:
-    void Traversal(Node* root,int K,int& cnt,int &ans)
-    {
-        if(root==NULL)
-        return;
-        
-        Traversal(root->right,K,cnt,ans);
-        
-        if(cnt==K)
-        ans=root->data;
-        
-        cnt++;
-        
-        Traversal(root->left,K,cnt,ans);
-    }
+    void inOrder(Node* root,vector<int>&in){
+    if(root==NULL)
+    return;
+
+    inOrder(root->left,in);
+    in.push_back(root->data);
+    inOrder(root->right,in);
+}
     int kthLargest(Node *root, int K)
     {
-        int cnt=1;
-        int ans=-1;
-        
-        Traversal(root,K,cnt,ans);
-        return ans;
+        //Your code here
+        if(root==NULL)
+        return -1;
+        vector<int>in;
+        inOrder(root,in);
+        if(K>in.size())
+        return -1;
+        return in[in.size()-K];
     }
 };
-
 
 //{ Driver Code Starts.
 
