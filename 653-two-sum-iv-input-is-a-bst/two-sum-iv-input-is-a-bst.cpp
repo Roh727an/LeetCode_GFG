@@ -14,10 +14,11 @@
 class BSTIterator {
 private:
     stack<TreeNode*>st;
-    // Flag to Determine Wheather Want Next or Before Method
+    // Flag to Determine Wheather we Want Next or Before Method
     bool before=false;
     // before = false -> Next
     // before = true -> before
+    // Push Extreme Nodes {next -> Left & before -> right}
     void pushExtreme(TreeNode* root){
         while(root!=NULL){
             st.push(root);
@@ -30,11 +31,12 @@ private:
         }
     }
 public:
+    // Constructor t set Before/Next Method
     BSTIterator(TreeNode* root,bool isBefore) {
         before=isBefore;
         pushExtreme(root);
     }
-    
+    // Move method to Find the Next/Before Nodeof a Particular Node
     int move() {
 
         TreeNode* nextEle=st.top();
@@ -47,10 +49,6 @@ public:
         pushExtreme(nextEle->right);
 
         return nextEle->val;
-    }
-    
-    bool hasNext() {
-        return !st.empty();
     }
 };
 
