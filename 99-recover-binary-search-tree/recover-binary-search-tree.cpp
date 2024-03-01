@@ -10,33 +10,44 @@
  * };
  */
 class Solution {
+private:
+    TreeNode* prev;
+    TreeNode* x;
+    TreeNode* y;
+    TreeNode* z;
 public:
-vector<int>v;
-    void inOrder(TreeNode* root){
+    void rec(TreeNode* root){
+        // Base Case
         if(root==NULL)
-        return ;
-        inOrder(root->left);
-        v.push_back(root->val);
-        inOrder(root->right);
-    }
-    void rec(int &idx,TreeNode*& root){
-        if(idx>=v.size() || root==NULL)
         return;
-        rec(idx,root->left);
-        
-        
-        root->val=v[idx];
-        idx++;
 
-        rec(idx,root->right);
+        // Left Recursive Call
+        rec(root->left);
+        // MAIN LOGIC
+        // There is a Violation
+        if(prev!=NULL && root->val < prev->val){
+            // First Violation
+            if(x==NULL){
+                x=prev;
+                y=root;
+            }
+            // Last Violation
+            else
+            z=root;
+        }
+        // Update Prev
+        prev=root;
+        // Right Recursive Call
+        rec(root->right);
     }
     void recoverTree(TreeNode* root) {
-        // Store Inorder
-        inOrder(root);
-        // Sort Inorder to make correct Inorder
-        sort(v.begin(),v.end());
-        int idx=0;
-        rec(idx,root);
-        
+        prev=new TreeNode(INT_MIN);
+        rec(root);
+        int first=x->val;
+        if(x!=NULL && z!=NULL)
+        swap(x->val,z->val);
+        else if(x!=NULL && y!=NULL)
+        swap(x->val,y->val);
+
     }
 };
