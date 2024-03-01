@@ -14,7 +14,8 @@ class Solution
     public:
     int peakElement(int nums[], int n)
     {
-       // Your code herez
+       // Your code here
+              // Your code herez
         // Base
         // 1.a.If the Array Contains single elemnt then it is a Peak Element
         if(n==1)
