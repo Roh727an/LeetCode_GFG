@@ -14,7 +14,7 @@ private:
     TreeNode* prev;
     TreeNode* x;
     TreeNode* y;
-    TreeNode* z;
+    
 public:
     void rec(TreeNode* root){
         // Base Case
@@ -33,9 +33,9 @@ public:
             }
             // Last Violation
             else
-            z=root;
+            y=root;
         }
-        // Update Prev
+        // Update Prev as Current Node
         prev=root;
         // Right Recursive Call
         rec(root->right);
@@ -43,11 +43,9 @@ public:
     void recoverTree(TreeNode* root) {
         prev=new TreeNode(INT_MIN);
         rec(root);
-        int first=x->val;
-        if(x!=NULL && z!=NULL)
-        swap(x->val,z->val);
-        else if(x!=NULL && y!=NULL)
+        
+        // If there exist only First Violation then swap x & y
+        if(x!=NULL && y!=NULL)
         swap(x->val,y->val);
-
     }
 };
