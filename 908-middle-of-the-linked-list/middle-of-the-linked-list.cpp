@@ -11,17 +11,12 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        // Base Case
-        if(head==NULL || head->next==NULL)
-        return head;
-        // Fast Pointer -> 2 Step
+        ListNode * slow=head;
         ListNode* fast=head;
-        // Slow Pointer -> 1 Step
-        ListNode* slow=head;
-        while(fast!=NULL && fast->next!=NULL)
-        {
+
+        while(fast->next!=NULL){
             fast=fast->next;
-            if(fast!=NULL)
+            if(fast->next!=NULL)
             fast=fast->next;
             slow=slow->next;
         }
