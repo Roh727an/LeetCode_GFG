@@ -5,36 +5,24 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
   public:
-    vector<int> duplicates(int arr[], int n) {
+    vector<int> duplicates(long long nums[], int n) {
         // code here
-        // Create an Ans array which acts as an HashMap
-        // S.C->O(N) not Auxaliry as it is Demanded by Question
-        vector<int>ans(n,0);
-        // Run a For Loop To Count Frequencies of Elements
+        vector<int>dup;
         for(int i=0;i<n;i++)
         {
-            ans[arr[i]]=ans[arr[i]]+1;
+            int idx=nums[i]%n;
+            nums[idx]+=n;
         }
-        // Move Zeroos to End
-        int j=0;
         for(int i=0;i<n;i++)
         {
-            if(ans[i]>1)
-            {
-            // We have to Store then Number not the Number of Occurance
-            ans[j]=i;
-            j++;
-            }
+            if((nums[i]/n) >=2) // Duplicate
+            dup.push_back(i);
         }
-        // Pop out the Zeros
-        for(int i=j;i<n;i++)
-        ans.pop_back();
-        // If there is No Element return -1
-        return ans.size()==0? vector<int>{-1} : ans;
-        
+        if(dup.size()==0)
+        return {-1};
+        return dup;
     }
 };
-
 
 
 //{ Driver Code Starts.
@@ -44,7 +32,7 @@ int main() {
     while (t-- > 0) {
         int n;
         cin >> n;
-        int a[n];
+        long long a[n];
         for (int i = 0; i < n; i++) cin >> a[i];
         Solution obj;
         vector<int> ans = obj.duplicates(a, n);
