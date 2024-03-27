@@ -5,30 +5,23 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    int isPrime(int n){
+    int isPrime(int N){
         // code here
-        if (n == 1)
+        if(N==1)
         return 0;
-    /*
-    // BRUTE FORCE
-    for(int i=2;i<n-1;i++){
-        if(n%i==0)
+        int cnt=0;
+        for(int i=1;i*i<=N;i++)
         {
-            cout<<n<<" is divisible by "<<i<<endl;
-        return false;
-        }
-    }
-    */
-    //    OPTIMIZED APPROCH
-    for (int i = 2; i <=sqrt(n); i++)
-    {
-        if (n % i == 0)
-        {
-            // cout << n << " is divisible by " << i << endl;
+            if(N%i==0)
+            {
+                cnt++;
+                if(N/i != i)
+                cnt++;
+            }
+            if(cnt>2)
             return 0;
         }
-    }
-    return 1;
+        return cnt<=2;
     }
 };
 
