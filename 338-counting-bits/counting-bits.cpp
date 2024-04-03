@@ -6,13 +6,11 @@ int setBits(int N) {
         if(N<=2)
         return 1;
         int cnt=0;
-        while(N>1)
+        while(N!=0)
         {
-            cnt+=(N&1);
-            N=N>>1;
+            N=N&(N-1);
+            cnt++;
         }
-        if(N==1)
-        cnt++;
         return cnt;
     }
     vector<int> countBits(int n) {
