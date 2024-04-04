@@ -1,20 +1,22 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        // Bit Manipulation
-        int n=1<<nums.size();
-        vector<vector<int>>ans;
-        for(int i=0;i<n;i++)
+    void rec(int idx,int n,vector<int> nums,vector<int>ds,vector<vector<int>>&ans){
+        if(idx>=n)
         {
-            vector<int>subset;
-            for(int j=0;j<nums.size();j++)
-            {
-                // Check Set bit ->Pick
-                if(i & (1<<j))
-                subset.push_back(nums[j]);
-            }
-            ans.push_back(subset);
+            ans.push_back(ds);
+            return;
         }
+        ds.push_back(nums[idx]);
+        rec(idx+1,n,nums,ds,ans);
+        ds.pop_back();
+        rec(idx+1,n,nums,ds,ans);
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        // Recursion
+        vector<vector<int>>ans;
+        vector<int>ds;
+        int n=nums.size();
+        rec(0,n,nums,ds,ans);
         return ans;
     }
 };
