@@ -1,53 +1,29 @@
 class Solution {
 public:
-    // Time Complexity-> O(N)
-    void rec(long long n,long long i,long long int &ans)
-    {
-        // Base Case
-        if(i>=n)
-        return;
-        // i is odd index
-        if(i%2)
-        ans*=4;
-        else
-        ans*=5;
-        
-        ans=ans%1000000007;
-        rec(n,i+1,ans);
-    }
-
-    long long power(long long x,long long n,long long &ans)
-    {
+    long long power(long long x,long long n,long long &ans){
         if(n<=0)
         return ans;
-        // Odd
-        if(n%2)
+
+        if((n&1) == 1)//ODD POwer
         {
-            ans=ans*x;
-            ans=ans%1000000007;
+            ans*=x;
             n=n-1;
+            ans=ans%1000000007;
         }
-        // Even
-        else
+        else //Even Power
         {
-            x=x*x;
-            x=x%1000000007;
+            x*=x;
             n=n/2;
+            x=x%1000000007;
         }
         return power(x,n,ans);
     }
     int countGoodNumbers(long long n) {
-        long long int ans=1;
-        // Time Complexity-> O(N)
-        // rec(n,0,ans);
-        // Iterative Approch
         long long odd=n/2;
         long long even=n/2 + n%2;
-        long long oddPow=1;
-        oddPow=power(4,odd,oddPow);
-        long long evenPow=1;
-        evenPow=power(5,even,evenPow);
-        ans=(evenPow*oddPow)%1000000007;
-        return ans;
+        long long oddP=1,evenP=1;
+        oddP=power(4,odd,oddP);
+        evenP=power(5,even,evenP);
+        return (evenP*oddP)%1000000007;
     }
 };
