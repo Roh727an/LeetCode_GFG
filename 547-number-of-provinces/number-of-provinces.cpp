@@ -10,7 +10,7 @@ public:
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
         int V=isConnected.size();
-        vector<int>adjList[V+1];
+        vector<int>adjList[V];
 
         // Convert Adjeceny Matrix to List
         
