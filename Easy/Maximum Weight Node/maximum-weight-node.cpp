@@ -8,22 +8,24 @@ using namespace std;
 class Solution
 {
   public:
-  int maxWeightCell(int N, vector<int> Edge)
+  int maxWeightCell(int n, vector<int> edges)
   {
       // code here
-      vector<int>wt(N,0);
-      int mxE=0;
-      for(int i=0;i<N;i++)
-      {
-          int edg=Edge[i];
-          if(edg!=-1){
-          wt[edg]+=i;
-        //MaxWeight Edge
-          if(wt[edg]>=wt[mxE])
-          mxE=edg;
-          }
-      }
-      return mxE;
+      // Vis array will count how many times a node is Visited
+    int vis[n] = {0}; // 0 based
+    int mxWN = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int source = i;
+        int des = edges[i];
+        if (des != -1)
+        {
+            vis[des]+=source;
+            if (vis[mxWN] <= vis[des])
+                mxWN = des;
+        }
+    }
+    return mxWN;
   }
 };
 
