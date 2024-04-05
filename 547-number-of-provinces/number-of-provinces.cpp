@@ -9,11 +9,11 @@ public:
         }
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
+        // Number of Times DFS Called = Number of Proviences
         int V=isConnected.size();
         vector<int>adjList[V];
 
         // Convert Adjeceny Matrix to List
-        
         for(int i=0;i<V;i++)
         {
             for(int j=0;j<V;j++)
@@ -28,9 +28,11 @@ public:
         // Visited Array
         vector<int>vis(V,0);
         int prv=0;
+        // Iterate all Nodes
         for(int i=0;i<V;i++)
         {
-            if(!vis[i])
+            //Node is Not Visited Yet so Call DFS
+            if(!vis[i]) 
             {
                 prv++;
                 dfs(i,adjList,vis);
