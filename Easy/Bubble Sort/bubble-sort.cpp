@@ -24,22 +24,19 @@ class Solution
     //Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n)
     {
-        // Your code here 
-        // Iterate From 0 -> N-1
-        for(int i=0;i<n-1;i++){
-            // Check Adjacent & Reduce Search Space by (i+1)(0-based Indexing) from last
-            bool y=true;
-            for(int j=0;j<n-i-1;j++)
-            {
+        // Your code here  
+        for(int i=0;i<n;i++)
+        {
+            int isSorted=1;
+            for(int j=0;j<n-i-1;j++){
                 if(arr[j]>arr[j+1]){
                 swap(arr[j],arr[j+1]);
-                y=false;
+                    isSorted=0;
                 }
             }
-            if(y){
-            // cout<<"Array is Already Sorted "<<" i: "<<i<<endl;
+            
+            if(isSorted==1)
             return;
-            }
         }
     }
 };
