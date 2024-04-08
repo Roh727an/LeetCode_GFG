@@ -1,14 +1,12 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        // Sorting Approch
-        sort(nums.begin(),nums.end());
-        for(int i=1;i<nums.size()-1;i=i+3){
-            if(nums[i]!=nums[i-1])
-            return nums[i-1];
-            if(nums[i]!=nums[i+1])
-            return nums[i+1];
+        // Concept of Buckets
+        int single=0,twice=0;
+        for(int i=0;i<nums.size();i++){
+            single=((single^nums[i])&(~twice));
+            twice=((twice^nums[i]) & (~single));
         }
-        return nums[nums.size()-1];
+        return single;
     }
 };
