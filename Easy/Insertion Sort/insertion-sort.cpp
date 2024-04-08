@@ -17,28 +17,29 @@ void printArray(int arr[], int size)
 class Solution
 {
     public:
-    // Place the Element to it's Correct Position
     void swap(int *a,int *b){
-        *a=*a+*b;
-        *b=*a-*b;
-        *a=*a-*b;
+        *a=*a^*b;
+        *b=*a^*b;
+        *a=*a^*b;
     }
     void insert(int arr[], int i)
     {
         //code here
-        while(i>0 && arr[i]<arr[i-1]){
-            swap(&arr[i],&arr[i-1]);
-            i--;
-        }
     }
      public:
     //Function to sort the array using insertion sort algorithm.
     void insertionSort(int arr[], int n)
     {
         //code here
-        for(int i=0;i<n;i++)
+        for(int i=1;i<n;i++)
         {
-            insert(arr,i);
+            for(int j=i;j>0;j--)
+            {
+                if(arr[j]<arr[j-1])
+                {
+                    swap(&arr[j],&arr[j-1]);
+                }
+            }
         }
     }
 };
