@@ -1,16 +1,24 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        // Hashing
-        unordered_map<int,int>mp;
+        
+        // 1.Find the Xor of All Number
+        long xxor=0;
         for(int i=0;i<nums.size();i++)
-        mp[nums[i]]++;
-        vector<int>ans;
+        xxor^=nums[i];
 
-        for(auto it:mp){
-            if(it.second ==1)
-            ans.push_back(it.first);
+        // Find the Rightmost Set bit Number
+        int rightmost=(xxor&xxor-1)^xxor; 
+        // Concept of Bucket
+        int b1=0,b2=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            // 1st Bit is Set or Not
+            if(nums[i] & rightmost) 
+            b1^=nums[i];
+            else
+            b2^=nums[i];
         }
-        return ans;
+        return{b1,b2};
     }
 };
