@@ -5,26 +5,23 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-	void rec(int i,string s,string temp,vector<string>&ans)
-	{
-	    if(i>=s.length())
-	    {
-	        if(temp.length()>=1)
-	        ans.push_back(temp);
-	        return ;
-	    }
-	    temp.push_back(s[i]);
-	     rec(i+1,s,temp,ans);
-	    
-	    temp.pop_back();
-	     rec(i+1,s,temp,ans);
-	}
-		vector<string> AllPossibleStrings(string s){
-		    // Code here
-		    vector<string>ans;
-		     rec(0,s,"",ans);
-		     sort(ans.begin(),ans.end());
-	    return ans;
+		vector<string> AllPossibleStrings(string nums){
+		int n=nums.length();
+        int subsets=(1<<n)-1;
+        vector<string>ans;
+        for(int bitIdx=1;bitIdx<=subsets;bitIdx++)
+        {
+            string sub;
+            for(int i=0;i<n;i++)
+            {
+                //i'th Bit set so Take the i'th element
+                if((bitIdx>>i)&1)
+                sub.push_back(nums[i]);
+            }
+            ans.push_back(sub);
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
 		}
 };
 
