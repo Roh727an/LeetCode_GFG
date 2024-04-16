@@ -9,22 +9,35 @@ using namespace std;
 
 class Solution{
 	public:
+	bool isPrime(int n){
+	    if(n==1)
+	    return false;
+	    int cnt=0;
+	    for(int i=1;i*i<=n;i++)
+	    {
+	        if(n%i==0)
+	        {
+	            cnt++;
+	            if(n/i!=i)
+	            cnt++;
+	        }
+	        if(cnt>2)
+	        return false;
+	    }
+	    return true;
+	}
 	vector<int>AllPrimeFactors(int N) {
 	    // Code here
 	    vector<int>ans;
-	    for(int i=2;i<=sqrt(N);i++)
-	    {
+	    for(int i=1;i*i<=N;i++){
 	        if(N%i==0)
 	        {
+	            if(isPrime(i))
 	            ans.push_back(i);
-	            while(N%i==0)
-	            {
-	                N=N/i;
-	            }
+	            if(N/i!=i && isPrime(N/i))
+	            ans.push_back(N/i);
 	        }
 	    }
-	    if(N!=1)
-	    ans.push_back(N);
 	    return ans;
 	}
 };
