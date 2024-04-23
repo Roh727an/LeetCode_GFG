@@ -1,64 +1,27 @@
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
-        /*
-        // Count Values & Replace Values
-        int zero=0;
-        int one=0;
-        int two=0;
-        // Count Values
-        for(int i=0;i<nums.size();i++)
+    void sortColors(vector<int>& a) {
+        // code here
+        int n=a.size(); 
+        int zero=0,one=0,two=0;
+        for(int i=0;i<n;i++)
         {
-            if(nums[i]==0)
+            if(a[i]==0)
             zero++;
-            else if(nums[i]==1)
+            else if(a[i]==1)
             one++;
             else
             two++;
         }
-        // Replace Values
         int idx=0;
-        while(zero--)
-        {
-            nums[idx++]=0;
-        }
-        while(one--)
-        {
-            nums[idx++]=1;
-        }
-        while(two--)
-        {
-            nums[idx++]=2;
-        }
-        */
-        // DNF ALGORITHM
-        int low=0;
-        int mid=0;
-        int high=nums.size()-1;
-
-        while(mid<=high)
-        {
-            // 0 -> LOW
-            if(nums[mid]==0)
-            {
-                swap(nums[mid],nums[low]);
-                mid++;
-                low++;
-            }
-            // 1 -> MID
-            else if(nums[mid]==1)
-            {
-                mid++;
-            }
-            // 2-> HIGH
-            else
-            {
-                swap(nums[mid],nums[high]);
-                high--;
-            }
-        }
-
-
-
+        
+        while(idx<n && zero--)
+        a[idx++]=0;
+        
+        while(idx<n && one--)
+        a[idx++]=1;
+        
+        while(idx<n && two--)
+        a[idx++]=2;
     }
 };
