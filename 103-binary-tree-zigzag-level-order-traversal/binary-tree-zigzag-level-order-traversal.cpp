@@ -13,40 +13,28 @@ class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         vector<vector<int>>ans;
+        bool leftToright=true;
         if(root==NULL)
         return ans;
-        // If odd -> Left TO Right ,If Even -> Right to Left
-        bool isOddLevel=true;
-        // Level Order Traversal
         queue<TreeNode*>q;
-        // Push the Root Node inot Queue
         q.push(root);
-
-        while(!q.empty())
-        {
-            int levelSize=q.size();
-            // Create a Vector to Store the Current Level Order
-            vector<int> levelOrder(levelSize);
-            // Iterate for Current Order
-            for(int i=0;i<levelSize;i++)
+        while(!q.empty()){
+            int size=q.size();
+            vector<int>lvl;
+            while(size--)
             {
-                // Take out the Front 
                 TreeNode* curr=q.front();
                 q.pop();
-                if(curr->left!=NULL)
+                lvl.push_back(curr->val);
+                if(curr->left)
                 q.push(curr->left);
-                if(curr->right!=NULL)
+                if(curr->right)
                 q.push(curr->right);
-
-                // Now if The Current level is Odd then I Store Left to Right
-                // level[i......size-1]
-                // Else if the Current Level is Even then I Store Right To Left
-                // level[size-1...i]
-                int fill=isOddLevel ? i : levelSize-i-1;
-                levelOrder[fill]=curr->val;
             }
-            isOddLevel=!isOddLevel;
-            ans.push_back(levelOrder);
+            if(leftToright==false)
+            reverse(lvl.begin(),lvl.end());
+            leftToright=!leftToright;
+            ans.push_back(lvl);
         }
         return ans;
     }
