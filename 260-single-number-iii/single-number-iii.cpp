@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        
-        // 1.Find the Xor of All Number
+                // 1.Find the Xor of All Number
         long xxor=0;
         for(int i=0;i<nums.size();i++)
         xxor^=nums[i];
