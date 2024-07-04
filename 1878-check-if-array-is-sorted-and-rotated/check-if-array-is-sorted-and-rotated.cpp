@@ -1,14 +1,13 @@
 class Solution {
 public:
     bool check(vector<int>& nums) {
-        int rt=0,n=nums.size();
-        for(int i=0;i<n;i++)
-        {
-            // Rotation Logic
-            if(nums[i]>nums[(i+1)%n])
-            rt++;
+        int rotated=0;
+        for(int i=0;i<nums.size();i++){
+            // A[i] == B[(i+x) % A.length] (ROTATION LOGIC)
+            if(nums[i]>nums[(i+1)%nums.size()])
+            rotated++;
 
-            if(rt>1)
+            if(rotated>1)
             return false;
         }
         return true;
