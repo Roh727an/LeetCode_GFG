@@ -1,14 +1,14 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int nondup=0,dup=nondup+1;
-        while(nondup<dup && dup<nums.size()){
-            if(nums[nondup]!=nums[dup]){
-            nums[nondup+1]=nums[dup];
-            nondup++;
+        int j=0;
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[j]!=nums[i]){
+                nums[j+1]=nums[i];
+                j++;
             }
-            dup++;
         }
-        return nondup+1;
+        return j+1;
     }
 };
