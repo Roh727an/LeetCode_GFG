@@ -1,18 +1,28 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        queue<int>q;
-        for(int i=0;i<nums.size();i++)
-        {
-            if(nums[i]!=0)
-            q.push(nums[i]);
+        // Base Case
+        if(nums.size()<=1)
+        return ;
+        int i=0,j=0;
+        while(i<nums.size() && j<nums.size()){
+            // Get the first zero 
+            while(i<nums.size() && nums[i]!=0)
+            i++;
+
+            // Fisrt Zero found 
+            j=i+1;
+
+            // Find the first NonZero
+            while(j<nums.size() && nums[j]==0 )
+            j++;
+
+            // First NonZero Found
+            if(i<nums.size() && j<nums.size()){
+            swap(nums[i],nums[j]);
+            i++;
+            j++;
+            }
         }
-        int i=0;
-        for(i=0;i<nums.size()&& !q.empty();i++){
-            nums[i]=q.front();
-            q.pop();
-        }
-        for(int j=i;j<nums.size();j++)
-        nums[j]=0;
     }
 };
