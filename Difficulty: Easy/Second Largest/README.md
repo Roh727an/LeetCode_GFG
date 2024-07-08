@@ -3,8 +3,8 @@
 <pre><span style="font-size: 18px;"><strong>Input:</strong> arr = [12, 35, 1, 10, 34, 1]
 <strong>Output:</strong> 34
 <strong>Explanation: </strong>The largest element of the array is 35 and the second largest element is 34.</span></pre>
-<pre><span style="font-size: 18px;"><strong>Input:</strong> arr = [10, 5, 10]
-<strong>Output:</strong> 5
-<strong>Explanation: </strong>The largest element of the array is 10 and the second largest element is 5.</span></pre>
+<pre><span style="font-size: 18px;"><strong>Input:</strong> arr = [10, 10]
+<strong>Output:</strong> -1
+<strong>Explanation: </strong>The largest element of the array is 10 and the second largest element does not exist so answer is -1.</span></pre>
 <p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong> O(n)<br><strong>Expected Auxiliary Space:</strong>&nbsp;O(1)</span></p>
 <p><span style="font-size: 18px;"><strong>Constraints:</strong><br>2 ≤ arr.size() ≤ 10<sup>5</sup><br>1 ≤ arr<sub>i </sub>≤ 10<sup>5</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>SAP Labs</code>&nbsp;<code>Rockstand</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Searching</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
