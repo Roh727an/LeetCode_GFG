@@ -9,19 +9,16 @@ class Solution{
     //arr1,arr2 : the arrays
     // n, m: size of arrays
     //Function to return a list containing the union of the two arrays. 
-    vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+    vector<int> findUnion(int nums1[], int nums2[], int n, int m)
     {
-        //Your code here
-        //return vector with correct order of elements
-        set<int>un;
+        set<int>st;
         for(int i=0;i<n;i++)
-        un.insert(arr1[i]);
+        st.insert(nums1[i]);
         
         for(int i=0;i<m;i++)
-        un.insert(arr2[i]);
+        st.insert(nums2[i]);
         
-        vector<int>ans(un.begin(),un.end());
-        return ans;
+        return vector<int>(st.begin(),st.end());
     }
 };
 
