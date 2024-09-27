@@ -15,25 +15,22 @@ void printArray(int arr[], int size)
 
 // } Driver Code Ends
 class Solution
-{ 
+{
     public:
-    void insert(int arr[], int i)
-    {
-        //code here
+    void swap(int *a,int *b){
+        int temp=*a;
+        *a=*b;
+        *b=temp;
     }
      public:
     //Function to sort the array using insertion sort algorithm.
     void insertionSort(int arr[], int n)
     {
         //code here
-        for(int i=0;i<n;i++)
-        {
+        for(int i=0;i<n;i++){
             int j=i;
-            while(j>0 && arr[j]<arr[j-1])
-            {
-                 int temp = arr[j];
-                    arr[j] = arr[j-1];
-                    arr[j-1] = temp;
+            while(j>0 && arr[j-1]>arr[j]){
+                swap(&arr[j-1],&arr[j]);
                 j--;
             }
         }
