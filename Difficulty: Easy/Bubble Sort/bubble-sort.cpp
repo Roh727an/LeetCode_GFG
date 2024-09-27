@@ -22,21 +22,22 @@ class Solution {
     // Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n) {
         // Your code here
+    for(int i=n-1;i>=1;i--)
+    {
+        // didSwap Happen?
+        bool didSwap=false;
         
-        // N-1 Pass/Iteration
-        for(int i=n-1;i>0;i--)
-        {
-            bool didSwap=false;
-            for(int j=0;j<i;j++){
-                if(arr[j]>arr[j+1])
-                {
-                    swap(arr[j],arr[j+1]);
-                    didSwap=true;
-                }
+        for(int j=0;j<i;j++){
+            // Unsorted -> Swap
+            if(arr[j]>arr[j+1]){
+            swap(arr[j],arr[j+1]);
+            didSwap=true;
             }
-            if(didSwap==false)
-            return;
         }
+            // Sorted?
+            if(didSwap==false)
+            break;
+    }
     }
 };
 
