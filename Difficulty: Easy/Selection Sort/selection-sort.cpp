@@ -20,8 +20,8 @@ class Solution
      
     void selectionSort(int arr[], int n)
     {
-    //   Go Through Every Element (Sort)
-        for(int i=0;i<n-1;i++)
+       //code here
+         for(int i=0;i<n-1;i++)
         {
             // Find Minimum from UnsortedPart
             int minIndex=i;
@@ -33,7 +33,7 @@ class Solution
             }
             // Swap 
             swap(arr[i],arr[minIndex]);
-        }
+    }
     }
 };
 
