@@ -19,34 +19,37 @@ class Solution
     //Function to sort an array using quick sort algorithm.
     void quickSort(int arr[], int low, int high)
     {
-        // Base Case
-        if(low>=high)
-        return ;
-        // Find the Correct Index of Pivot Element
-        int pivotIndex=partition(arr,low,high);
         
-        // Recucsively Divide
-        quickSort(arr,low,pivotIndex-1);
-        quickSort(arr,pivotIndex+1,high);
+        if(low<high)
+        {
+            // Place Pivot To Its Correct Place
+            int partitionIndex=partition(arr,low,high);
+            // Left
+            quickSort(arr,low,partitionIndex-1);
+            // Right
+            quickSort(arr,partitionIndex+1,high);
+        }
     }
     
     public:
     int partition (int arr[], int low, int high)
     {
        // Your code here
-       int pivot=low;
-       int i=low,j=high;
+       int pivot=arr[low];
+       int i=low,j=high;//i -> First Greater & j-> First Lower from Pivot
        while(i<j){
-           while(i<high && arr[pivot]>=arr[i])
+           while(i<=high && arr[i]<=pivot)
            i++;
-           while(j>low && arr[pivot]<arr[j])
+           while(j>=low && arr[j]>pivot)
            j--;
-           
+        //   Didnot Cross -> Swap
            if(i<j)
            swap(arr[i],arr[j]);
        }
-       swap(arr[low],arr[j]);
-       return j;
+    //   Place Pivot in its Correct Position
+    swap(arr[low],arr[j]);
+    // Pivot Index-> j
+    return j;
     }
 };
 
