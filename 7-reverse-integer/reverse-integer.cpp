@@ -1,24 +1,25 @@
 class Solution {
 public:
     int reverse(int x) {
+        long long rev=0;
         bool neg=false;
-        long long num=x;
         if(x<0){
         neg=true;
-        num=num*(-1);
+        x=abs(x);
         }
-        long long rev=0;
-        while(num>0)
-        {
-            rev=rev*10+num%10;
-            num=num/10;
-        }
-         if(neg)
-         rev=rev*(-1);
 
-        if(rev>INT_MAX || rev<INT_MIN)
-        return 0;
-       
-        return rev;
+        while(x>0){
+            int rem=x%10;
+            rev=rev*10 + rem;
+            if(rev>INT_MAX)
+            return 0;
+            x=x/10;
+        }
+
+        if(neg)
+        rev=-1*rev;
+
+        return rev>INT_MAX || rev <INT_MIN ? 0:rev;
+
     }
 };
