@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1">GCD of two numbers</a></h2><h3>Difficulty Level : Difficulty: Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given two positive integers <strong>a</strong> and <strong>b</strong>, find <strong>GCD </strong>of a and b.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1">GCD of two numbers</a></h2><h3>Difficulty Level : Difficulty: Basic</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given two positive integers <strong>a</strong> and <strong>b</strong>, find <strong><a href="https://www.geeksforgeeks.org/greatest-common-divisor-gcd/">GCD</a> </strong>of a and b.</span></p>
 <p><span style="font-size: 18px;"><strong>Note:</strong> Don't use the inbuilt gcd function</span></p>
 <p><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input:</strong> <br>a = 3<br>b = 6
