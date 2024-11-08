@@ -1,12 +1,18 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        vector<int>hash(nums.size()+1,0);
+        int ans=-1;
         for(int i=0;i<nums.size();i++){
-            hash[nums[i]]++;
-            if(hash[nums[i]]>1)
-            return nums[i];
+            int idx=abs(nums[i]);
+            // If Visited
+            if(nums[idx]<0)
+            {
+                ans=idx;
+                break;
+            }
+            // Mark as Visited
+            nums[idx]*=(-1);
         }
-        return -1;
+        return ans;
     }
 };
