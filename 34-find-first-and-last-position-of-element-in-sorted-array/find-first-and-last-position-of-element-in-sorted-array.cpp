@@ -1,41 +1,38 @@
 class Solution {
 public:
-    int firstOcc(vector<int>arr,int k){
-        int s=0,e=arr.size()-1,mid=(s+e)/2;
-        int idx=-1;
+    int firstOccurance(vector<int>& nums, int target){
+         int s=0,e=nums.size()-1;
+         int fo=-1;
         while(s<=e){
-            if(arr[mid]>=k){
-                if(arr[mid]==k)
-                idx=mid;
-                e=mid-1;
-            }
-            else
-            s=mid+1;
-            mid=(s+e)/2;
-        }
-        return idx;
-    }
-
-    int lastOcc(vector<int>arr,int k){
-        int s=0,e=arr.size()-1,mid=(s+e)/2;
-        int idx=-1;
-        while(s<=e){
-            if(arr[mid]<=k){
-                if(arr[mid]==k)
-                idx=mid;
-                s=mid+1;
-            }
-            else
+            int mid=s+(e-s)/2;
+            if(nums[mid]==target){
+            fo=mid;
             e=mid-1;
-            mid=(s+e)/2;
+            }
+            else if(nums[mid]>target)
+            e=mid-1;
+            else // Move Right
+            s=mid+1;
         }
-        return idx;
+        return fo;
     }
-
+    int lastOccurance(vector<int>& nums, int target){
+         int s=0,e=nums.size()-1;
+         int lo=-1;
+        while(s<=e){
+            int mid=s+(e-s)/2;
+            if(nums[mid]==target){
+            lo=mid;
+            s=mid+1;
+            }
+            else if(nums[mid]>target)
+            e=mid-1;
+            else // Move Right
+            s=mid+1;
+        }
+        return lo;
+    }
     vector<int> searchRange(vector<int>& nums, int target) {
-        vector<int>pos;
-        pos.push_back(firstOcc(nums,target));
-        pos.push_back(lastOcc(nums,target));
-        return pos;
+        return {firstOccurance(nums,target),lastOccurance(nums,target)};
     }
 };
