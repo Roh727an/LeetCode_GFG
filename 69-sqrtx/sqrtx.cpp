@@ -1,46 +1,18 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        /*
-        // LINEAR SEARCH APPROCH
-        // Base Case
-        if(x==0)
-        return 0;
-        int ans=1;
-        for(int i=1;i<=x;i++)
-        {
-            if(i*i > x)
-            break;
-
-            ans=i;
-        }
-        return ans;
-        */
-        // BINARY SEARCH APPROCH
-        // Base Case
-        if(x==0)
-        return 0;
-        // return 0;
-        int s=1;
-        int e=x;
-        long long mid=((long long)s+(long long)e)/(long long)2;
-        int ans=1;
-        while(s<e)
-        {
-            // Find Our Square Root
+        int ans=0;
+        int s=0,e=x;
+        while(s<=e){
+            long long mid=s+(e-s)/2;
             if(mid*mid==x)
-            return (int)mid;
-            
-            // Lesser -> Store
-            if(mid*mid < x)
-            {
-                ans=(int)mid;
+            return mid;
+            else if(mid*mid > x)
+            e=mid-1;
+            else{
+                ans=mid;
                 s=mid+1;
             }
-            else
-            e=mid;
-            // Update Mid
-            mid=(s+e)/2;
         }
         return ans;
     }
