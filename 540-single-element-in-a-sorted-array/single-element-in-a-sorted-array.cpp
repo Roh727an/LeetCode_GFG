@@ -1,27 +1,28 @@
 class Solution {
 public:
-    int singleNonDuplicate(vector<int>& A) {
-        int n=A.size();
-        //Base Cases
-	    if(n==1)
-	    return A[0];
-	    if(A[0]!=A[1])
-	    return A[0];
-	    if(A[n-1]!=A[n-2])
-	    return A[n-1];
-	    
-	    int s=1;
-	    int e=n-2;
-	    while(s<=e){
-	        int mid=(s+e)/2;
-	        if(A[mid]!=A[mid-1] && A[mid]!=A[mid+1])
-	        return A[mid];
-	        
-	        if((mid%2==0 && A[mid]==A[mid+1]) ||(mid%2==1 && A[mid]==A[mid-1]))
-	        s=mid+1;
-	        else
-	        e=mid-1;
-	    }
-	    return -1;
+    int singleNonDuplicate(vector<int>& nums) {
+        int n=nums.size();
+        int s=0,e=n-1,mid;
+        while(s<=e){
+            mid=s+(e-s)/2;
+            if(s==e)
+            return nums[mid];
+            // Mid is Even Index
+            else if(mid%2==0)
+            {
+                if(mid+1 < n && nums[mid]==nums[mid+1])
+                s=mid+2;
+                else
+                e=mid;
+            }
+            // Mid is Odd Index
+            else{
+                if(mid-1 >=0  && nums[mid]==nums[mid-1])
+                s=mid+1;
+                else
+                e=mid-1;
+            }
+        }
+        return -1;
     }
 };
