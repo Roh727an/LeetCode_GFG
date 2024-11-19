@@ -1,34 +1,31 @@
 class Solution {
 public:
     int divide(int dividend, int divisor) {
-        // Base Condition
-        if (dividend == divisor)
-            return 1;
-        bool pos = true; // true is Positive
-        if ((dividend >= 0 && divisor < 0) || (dividend <= 0 && divisor > 0))
-            pos = false; // false is Negative
+        // Base Case
+        long long dv=dividend,dvs=divisor;
+        
 
-        long n = abs(dividend);
-        long d = abs(divisor);
-
-        // DIvision Logic
-        long quotient = 0;
-        while (n >= d) {
-            int cnt = 0;
-            // Check the Hight Power of 2 that can be divided
-            while (n >= (d << (cnt + 1))) {
-                cnt++;
+        long long s=0,e=abs(dv),mid;
+        long long ans=0;
+        while(s<=e){
+            mid=s+(e-s)/2;
+            if(abs(mid*dvs)>abs(dv))
+            e=mid-1;
+            else
+            {
+                ans=mid;
+                s=mid+1;
             }
-
-            quotient += (1 << cnt);
-            n = n - (d << cnt);
         }
-        // OverFlow Conditions
-        if (quotient == (1 << 31) && pos)
-            return INT_MAX;
-        if (quotient == (1 << 31) && !pos)
-            return INT_MIN;
+        if((dv>0 && dvs<0) || (dv<0 && dvs>0))
+        ans=(-1)*ans;
 
-        return pos ? quotient : -1 * quotient;
+        if(ans>INT_MAX)
+        return INT_MAX;
+        if(ans<INT_MIN)
+        return INT_MIN;
+
+        return ans;
+
     }
 };
