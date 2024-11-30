@@ -1,24 +1,19 @@
 class Solution {
 public:
-bool isPalindrome(string s,int i,int j)
-{
-    while(i<j){
-        if(s[i++]!=s[j--])
-        return false;
+    int expand(string s,int l,int r){
+        int cnt=0;
+        while(l>=0 && r<s.length() && s[l--]==s[r++])
+        {
+            cnt++;
+        }
+        return cnt;
     }
-    return true;
-}
     int countSubstrings(string s) {
-        int ans = 0;
-        int n = s.length();
-        for(int i=0;i<n;i++) {
-            for(int j=i;j<n;j++) 
-            {
-                if(isPalindrome(s, i, j)) 
-                ans++;
-            }
+        int ans=0;
+        for(int i=0;i<s.length();i++){
+            // Odd Expand + Even Expand
+            ans=ans+ expand(s,i,i) + expand(s,i,i+1);
         }
         return ans;
     }
-
 };
