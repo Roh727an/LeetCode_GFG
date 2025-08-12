@@ -1,39 +1,28 @@
 class Solution {
     public double myPow(double x, int n) {
-        boolean inverse = n < 0 ? true : false;
-        n = Math.abs(n);
-        //if x is potive or power is even then ans will be positive
-        boolean pos = x > 0 || n % 2 == 0 ? true : false;
-        x = Math.abs(x);
+        // BASE CASE: anything to power 0 is 1
+        if (n == 0) return 1; 
 
-        // Base Case
-        if (x == 1)
-            return pos ? 1 : -1;
-        if(n==-2147483648 || n==2147483647 && x>1)
-        return 0;
-        // Logic
-        double ans = 1;
-        while (n > 0) {
-            //ODD Power
-            if (n % 2 == 1) {
-                ans = ans * x;
-                n = n - 1;
-            } 
-            //Even Power
-            else {
-                n = n / 2;
-                x = x * x;
-            }
-        }
+        // use long to handle Integer.MIN_VALUE case
+        long exp = n; 
         // Inverse
-        if (inverse)
-            ans = 1 / ans;
-        // Negative
-        if(!pos)
-        ans=(-1)*ans;
-        // Range
-        if(ans>10000 || ans<-10000)
-        ans=0;
-        return ans;
+        if (exp < 0) {
+            x = 1 / x;
+            exp = -exp;
+        }
+
+        double result = 1;
+        while (exp > 0) {
+            // if exp is odd
+            if ((exp & 1) == 1) { 
+                result *= x;
+            }
+            // square the base
+            x *= x; 
+            // divide exponent by 2
+            exp >>= 1; 
+        }
+
+        return result;
     }
 }
