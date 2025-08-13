@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/find-xor-of-numbers-from-l-to-r/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=find-xor-of-numbers-from-l-to-r">Find XOR of numbers from L to R.</a></h2><h3>Difficulty Level : Difficulty: Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">You are given two integers L and R, your task is to find the XOR of elements of the range [L, R].</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/find-xor-of-numbers-from-l-to-r/1">Find XOR of numbers from L to R.</a></h2><h3>Difficulty Level : Difficulty: Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">You are given two integers L and R, your task is to find the XOR of elements of the range [L, R].</span></p>
 
 <p><span style="font-size:18px"><strong>Example:</strong></span></p>
 
